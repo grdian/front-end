@@ -14,14 +14,16 @@
   max-width: 6rem;
 }
 
-.login-panel {
+.input-panel {
   padding: 1rem;
   border: 1px solid var(--neutral-dark);
   border-radius: 1em;
+  margin-bottom: 2rem;
 }
 
 .field-label {
   margin: 0.2em;
+  font-size: 1.2em;
 }
 
 .field-value {
@@ -32,7 +34,7 @@
   overflow: hidden;
 }
 
-.login-panel__submit {
+.input-panel__submit {
   max-width: 60%;
   margin: 0.5em auto;
   text-align: center;
@@ -44,7 +46,7 @@
   cursor: pointer;
 }
 
-.login-panel__submit:hover {
+.input-panel__submit:hover {
   background-color: var(--neutral-light);
   color: var(--neutral-dark);
 }
