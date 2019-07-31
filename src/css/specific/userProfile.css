@@ -1,0 +1,19 @@
+.header {
+  background-color: var(--red);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.profile-panel {
+  display: flex;
+}
+.profile-panel__image {
+  width: 10rem;
+}
+.profile-panel__image img {
+  border-radius: 100%;
+}
+.profile-panel__info {
+  display: grid;
+  grid-template-columns: 3;
+}
