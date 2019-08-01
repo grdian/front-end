@@ -4,9 +4,9 @@
   text-align: center;
   font-weight: 2900;
   color: var(--primary);
-  text-shadow: 0px 0px 15px var(--secondary);
+  text-shadow: 0px 0px 15px var(--yellow);
   -webkit-text-stroke-width: 0.4px;
-  -webkit-text-stroke-color: var(--secondary);
+  -webkit-text-stroke-color: var(--yellow);
 }
 
 .header__logo {

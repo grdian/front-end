@@ -1,0 +1,22 @@
+.header {
+  background-color: var(--secondary);
+  border-bottom: 2px solid var(--neutral-dark);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.input-panel {
+  margin-top: 2rem;
+}
+.emergency {
+  color: var(--secondary);
+}
+.high {
+  color: var(--secondary);
+}
+.moderate {
+  color: var(--yellow);
+}
+.minor {
+  color: var(--primary);
+}

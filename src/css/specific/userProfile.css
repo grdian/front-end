@@ -1,6 +1,8 @@
 .header {
-  background-color: var(--red);
+
+  background-color: var(--secondary);
   border-bottom: 2px solid var(--neutral-dark);
+
   color: white;
   padding: 2rem;
   text-align: center;
