@@ -1,10 +1,10 @@
 :root {
-	--primary: #49c593;
-	--red: #E84855;
-	--secondary: #FFFD82;
-	--neutral-dark: #283044;
-	--neutral-light: #EBF5EE;
-	--white: #fff;
-	--black: #000;
-	--transparent: #ffffff00;
+  --primary: #49c593;
+  --secondary: #e84855;
+  --yellow: #fffd82;
+  --neutral-dark: #283044;
+  --neutral-light: #ebf5ee;
+  --white: #fff;
+  --black: #000;
+  --transparent: #ffffff00;
 }

@@ -5,23 +5,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>grdian chatRoomView</title>
+  <title>conversation</title>
   <link rel="shortcut icon" href="../images/grdian_logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="../css/common.css" />
-  <!-- Note: "responsive.css" should always come last. -->
+<link rel="stylesheet" href="../css/specific/chatRoom.css">
   <link rel="stylesheet" href="../css/responsive.css" />
 </head>
 
 <body>
   <div class="wrapper">
-    <header class="header"></header>
-    <main class="main">chatRoomView</main>
-    <footer class="footer">
-      <h4>
-        &copy; 2019 grdian Inc.
-      </h4>
-    </footer>
-  </div>
+    <header class="header">
+      <h2 class="title">conversation</h2>
+      <div class="profileIcon-container">
+        <div class="profileIcon"><img src="../images/Profile-pic-stock.jpg" alt="profile picture"></div>
+        <div class="profileIcon"><img src="../images/Profile-pic-stock.jpg" alt="profile picture"></div>
+        <div class="profileIcon"><img src="../images/Profile-pic-stock.jpg" alt="profile picture"></div>
+
+      </div>
+    </header>
+    <main class="main">
+      <section class="text-entry_container">
+        <form class="text-entry_form">
+          <input class="entry-box" type="text" name="message"><br>
+          <input class="submit-button" type="submit" value="send">
+        </form>
+      </section>
+    </main>
 </body>
 
 </html>
