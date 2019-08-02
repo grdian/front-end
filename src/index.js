@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import LoginForm from "./js/components/LoginForm";
 
-// const element = <h1>Welcome to grdian</h1>;
+const greeting = "Login Page";
 
-ReactDOM.render(<LoginForm />, document.getElementById("root"));
+ReactDOM.render(
+  <LoginForm greeting={greeting} />,
+  document.getElementById("root")
+);

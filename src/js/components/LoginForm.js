@@ -6,6 +6,9 @@ import logo from "../../images/grdian_logo.png";
 
 export default class LoginForm extends React.Component {
   render() {
+    // const greeting = "grdian login";
+    const greeting = this.props.greeting;
+
     return (
       <div class="wrapper">
         <header class="header">
@@ -14,7 +17,7 @@ export default class LoginForm extends React.Component {
           </figure>
         </header>
         <main class="main">
-          <h1 class="main-title">grdian</h1>
+          <h1 class="main-title">{greeting}</h1>
 
           <section class="input-panel">
             <h3 class="field-label">Email:</h3>
