@@ -2,6 +2,7 @@ import React from "react";
 import "../../css/common.css";
 import "../../css/specific/login.css";
 import "../../css/responsive.css";
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import logo from "../../images/grdian_logo.png";
 
 export default class CreateProfile extends React.Component {
@@ -9,11 +10,13 @@ export default class CreateProfile extends React.Component {
     // const greeting = "grdian login";
     const greeting = this.props.greeting;
 
+
     return (
+
         <div class="wrapper">
         <header class="header">
           <figure class="header__logo">
-            <img src="../images/Grdian-logo.png" />
+            <img src={logo} />
           </figure>
         </header>
         <main class="main">
@@ -35,6 +38,7 @@ export default class CreateProfile extends React.Component {
             <h3 class="field-label">Confirm Password:</h3>
             <input required placeholder="Confirm Password" class="field-value" />
             <h3 class="input-panel__submit">Create</h3>
+            <Link to="/main">main</Link>
           </section>
     
         </main>
@@ -45,6 +49,7 @@ export default class CreateProfile extends React.Component {
           </h4>
         </footer>
       </div>
+    
     );
-  }
+}
 }

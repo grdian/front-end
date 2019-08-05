@@ -2,7 +2,7 @@ import React from "react";
 import "../../css/common.css";
 import "../../css/specific/login.css";
 import "../../css/responsive.css";
-import CreateProfile from "../components/CreateProfile";
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import logo from "../../images/grdian_logo.png";
 
 export default class LoginForm extends React.Component {
@@ -32,15 +32,15 @@ export default class LoginForm extends React.Component {
             <h3 class="input-panel__submit">Login</h3>
           </section>
 
-          <a href="../CreateProfile" class="create-account-link">
-            create account
-          </a>
+      
+         <Link to="/create">create account</Link>
 
         </main>
         <footer class="footer">
           <h4>&copy; 2019 grdian Inc.</h4>
         </footer>
       </div>
+  
     );
   }
 }
