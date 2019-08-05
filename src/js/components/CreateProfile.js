@@ -3,7 +3,7 @@ import "../../css/common.css";
 import "../../css/specific/login.css";
 import "../../css/responsive.css";
 import {BrowserRouter as Router, Link} from 'react-router-dom';
-import logo from "../../images/grdian_logo.png";
+import logo from "../../images/Grdian-logo.png";
 
 export default class CreateProfile extends React.Component {
   render() {
@@ -37,8 +37,7 @@ export default class CreateProfile extends React.Component {
             <input required placeholder="password" class="field-value" />
             <h3 class="field-label">Confirm Password:</h3>
             <input required placeholder="Confirm Password" class="field-value" />
-            <h3 class="input-panel__submit">Create</h3>
-            <Link to="/main">main</Link>
+            <h3 class="input-panel__submit"><Link to="/main">create</Link></h3>
           </section>
     
         </main>

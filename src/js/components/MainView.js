@@ -14,8 +14,8 @@ export default class MainView extends React.Component {
     return (
       <div class="wrapper">
         <header class="header">
-          <h1>alert grdians</h1>
-        </header>
+        <h1 ><Link to="/send">alert grdians</Link></h1>
+         </header>
         <main class="main">
           <section class="profile-panel">
             <div class="profile-panel__image">
@@ -43,9 +43,11 @@ export default class MainView extends React.Component {
       <div class="container-grdian">
         <h2 class="title">grdians</h2>
         <section class="profile-grdians">
-          <div class="profile-grdians__image"><img src={profilePic} alt="grdian pic"></img></div>
-          <div class="profile-grdians__image"><img src={profilePic} alt="grdian pic"></img></div>
-          <div class="profile-grdians__image"><img src={profilePic} alt="grdian pic"></img></div>
+        
+          <div class="profile-grdians__image"><Link to="/grdian"><img src={profilePic} alt="grdian pic"/></Link></div>
+          <div class="profile-grdians__image"><Link to="/grdian"><img src={profilePic} alt="grdian pic"/></Link></div>
+          <div class="profile-grdians__image"><Link to="/grdian"><img src={profilePic} alt="grdian pic"/></Link></div>
+                
         </section>
       </div>
         </main>

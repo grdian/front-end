@@ -2,8 +2,8 @@ import React from "react";
 import "../../css/common.css";
 import "../../css/specific/login.css";
 import "../../css/responsive.css";
-import {BrowserRouter as Router, Link} from 'react-router-dom';
-import logo from "../../images/grdian_logo.png";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+import logo from "../../images/Grdian-logo.png";
 
 export default class LoginForm extends React.Component {
   render() {
@@ -20,27 +20,26 @@ export default class LoginForm extends React.Component {
         <main class="main">
           <h1 class="main-title">{greeting}</h1>
 
-          <section class="input-panel">
+          <form class="input-panel">
             <h3 class="field-label">Email:</h3>
-            <input
-              required
-              placeholder="so-and-so@domain.com"
+            <input type="text" required placeholder="so-and-so@domain.com"
               class="field-value"
             />
             <h3 class="field-label">Password:</h3>
-            <input required placeholder="password" class="field-value" />
-            <h3 class="input-panel__submit">Login</h3>
-          </section>
+            <input type="text" required placeholder="password" class="field-value" />
+            <br></br>
+            <button class="input-panel__submit"><Link to="/main">Login</Link></button>
+          </form>
 
-      
-         <Link to="/create">create account</Link>
+
+          <Link to="/create">create account</Link>
 
         </main>
         <footer class="footer">
           <h4>&copy; 2019 grdian Inc.</h4>
         </footer>
       </div>
-  
+
     );
   }
 }
