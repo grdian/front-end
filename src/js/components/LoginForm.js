@@ -32,10 +32,10 @@ export default class LoginForm extends React.Component {
             <h3 class="input-panel__submit">Login</h3>
           </section>
 
-          {/* <a href="../CreateProfile" class="create-account-link">
+          <a href="../CreateProfile" class="create-account-link">
             create account
-          </a> */}
-          <link to={CreateProfile}>Create Account</link>
+          </a>
+
         </main>
         <footer class="footer">
           <h4>&copy; 2019 grdian Inc.</h4>
