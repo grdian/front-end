@@ -31,14 +31,14 @@
 }
 
 .text-entry_form {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 .main {
-  background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 .submit-button {
-  background-color: var(--secondary);
-  border-radius: 50px;
+    background-color: var(--secondary);
+    border-radius: 50px;
 }
