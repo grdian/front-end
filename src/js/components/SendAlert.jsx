@@ -7,32 +7,31 @@ import logo from "../../images/grdian_logo.png";
 
 export default class SendAlert extends React.Component {
   render() {
-    const greeting = this.props.greeting;
     return (
       <>
-        <section class="input-panel">
-          <h3 class="field-label">Help Message:</h3>
-          <input required value="I need help ASAP!" class="field-value" />
-          <h3 class="field-label">Urgency Level:</h3>
+        <section className="input-panel">
+          <h3 className="field-label">Help Message:</h3>
+          <input required value="I need help ASAP!" className="field-value" />
+          <h3 className="field-label">Urgency Level:</h3>
           <select name="cars">
-            <option class="emergency" value="emergency">
+            <option className="emergency" value="emergency">
               EMERGENCY
             </option>
-            <option class="high" value="high">
+            <option className="high" value="high">
               HIGH
             </option>
-            <option class="moderate" value="moderate">
+            <option className="moderate" value="moderate">
               Moderate
             </option>
-            <option class="minor" value="minor">
+            <option className="minor" value="minor">
               Minor
             </option>
           </select>
-          <h3 class="field-label">Location:</h3>
+          <h3 className="field-label">Location:</h3>
           <input
             required
             placeholder="(40.545542, -83.453453)"
-            class="field-value"
+            className="field-value"
           />
         </section>
       </>

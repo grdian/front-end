@@ -8,21 +8,18 @@ import profilePic from "../../images/Profile-pic-stock.jpg";
 
 export default class LoginForm extends React.Component {
   render() {
-    // const greeting = "grdian login";
-    const greeting = this.props.greeting;
-
     return (
       <>
-        <section class="profile-panel">
-          <div class="profile-panel__image">
+        <section className="profile-panel">
+          <div className="profile-panel__image">
             <img src={profilePic} alt="Profile pic" />
           </div>
-          <div class="profile-panel__info">
-            <h3 class="profile-panel__info-element">first last name</h3>
-            <h3 class="profile-panel__info-element">location</h3>
+          <div className="profile-panel__info">
+            <h3 className="profile-panel__info-element">first last name</h3>
+            <h3 className="profile-panel__info-element">location</h3>
           </div>
         </section>
-        <button class="join-button">Delete grdian</button>
+        <button className="join-button">Delete grdian</button>
       </>
     );
   }

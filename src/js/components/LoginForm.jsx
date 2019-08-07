@@ -7,30 +7,27 @@ import logo from "../../images/Grdian-logo.png";
 
 export default class LoginForm extends React.Component {
   render() {
-    // const greeting = "grdian login";
-    const greeting = this.props.greeting;
-
     return (
       <>
-        <h1 class="main-title">{greeting}</h1>
+        <h1 className="main-title">grdian</h1>
 
-        <form class="input-panel">
-          <h3 class="field-label">Email:</h3>
+        <form className="input-panel">
+          <h3 className="field-label">Email:</h3>
           <input
             type="text"
             required
             placeholder="so-and-so@domain.com"
-            class="field-value"
+            className="field-value"
           />
-          <h3 class="field-label">Password:</h3>
+          <h3 className="field-label">Password:</h3>
           <input
             type="text"
             required
             placeholder="password"
-            class="field-value"
+            className="field-value"
           />
           <br />
-          <button class="input-panel__submit">
+          <button className="input-panel__submit">
             <Link to="/main">Login</Link>
           </button>
         </form>
