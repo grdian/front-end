@@ -7,7 +7,52 @@ import logo from "../../images/grdian_logo.png";
 import profilePic from "../../images/Profile-pic-stock.jpg";
 
 export default class MainView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      users: [
+        {
+          id: 1,
+          firstName: "Lawrence",
+          lastName: "Mboya",
+          imgURL:
+            "https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=1&w=500",
+          phoneNumber: "1234567890",
+          emailAddress: "mboya@gmail.com",
+          password: "password",
+          sentMessages: []
+        }
+      ]
+    };
+  }
+
+  componentDidMount() {
+    // Reference: https://reactjs.org/docs/faq-ajax.html
+    fetch("http://localhost:8080/api/users")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            users: result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+  }
+
   render() {
+    const { error, isLoaded, users } = this.state;
     return (
       <>
         <section className="profile-panel">
@@ -35,21 +80,13 @@ export default class MainView extends React.Component {
         <div className="container-grdian">
           <h2 className="title">grdians</h2>
           <section className="profile-grdians">
-            <div className="profile-grdians__image">
-              <Link to="/grdian">
-                <img src={profilePic} alt="grdian pic" />
-              </Link>
-            </div>
-            <div className="profile-grdians__image">
-              <Link to="/grdian">
-                <img src={profilePic} alt="grdian pic" />
-              </Link>
-            </div>
-            <div className="profile-grdians__image">
-              <Link to="/grdian">
-                <img src={profilePic} alt="grdian pic" />
-              </Link>
-            </div>
+            {users.map(user => (
+              <div key={user.id} className="profile-grdians__image">
+                <Link to="/grdian">
+                  <img src={user.imgURL} alt="grdian pic" />
+                </Link>
+              </div>
+            ))}
           </section>
         </div>
       </>
