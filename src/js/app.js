@@ -6,7 +6,7 @@ import MainView from "./components/MainView";
 import SendAlert from "./components/SendAlert";
 import GrdianView from "./components/GrdianView";
 import Layout from "./components/Layout";
-import TestComponent from "./components/TestComponent";
+import AddUser from "./components/AddUser";
 
 export default function App() {
   return (
