@@ -1,6 +1,5 @@
 .header {
-
-  background-color: var(--secondary);
+  background-color: #ccc;
   border-bottom: 2px solid var(--neutral-dark);
 
   color: white;

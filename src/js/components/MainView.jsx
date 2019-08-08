@@ -82,7 +82,7 @@ export default class MainView extends React.Component {
           <section className="profile-grdians">
             {users.map(user => (
               <div key={user.id} className="profile-grdians__image">
-                <Link to="/grdian">
+                <Link to={"/grdian/" + user.id}>
                   <img src={user.imgURL} alt="grdian pic" />
                 </Link>
               </div>
