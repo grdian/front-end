@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/common.css";
-import "../../css/specific/login.css";
+import "../../css/master.css"
 import "../../css/responsive.css";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import logo from "../../images/grdian_logo.png";
