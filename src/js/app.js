@@ -16,7 +16,7 @@ export default function App() {
         <Route path="/create" component={CreateProfile} />
         <Route path="/main" component={MainView} />
         <Route path="/send" component={SendAlert} />
-        <Route path="/grdian" component={GrdianView} />
+        <Route path="/grdian/:id" component={GrdianView} />
       </Switch>
     </Layout>
   );
