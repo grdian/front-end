@@ -1,8 +1,6 @@
 import React from "react";
-import "../../css/specific/mainView.css"
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import logo from "../../images/grdian_logo.png";
-import profilePic from "../../images/Profile-pic-stock.jpg";
+import "../../css/specific/mainView.css";
+import { Link } from "react-router-dom";
 
 export default class MainView extends React.Component {
   constructor(props) {
@@ -10,6 +8,17 @@ export default class MainView extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
+      loggedInUser: {
+        id: 100,
+        firstName: "Guybrush",
+        lastName: "Threepwood",
+        imgURL:
+          "https://ih1.redbubble.net/image.363229123.6653/flat,1000x1000,075,f.u1.jpg",
+        phoneNumber: "1234567890",
+        emailAddress: "guybrush@gmail.com",
+        password: "monkeyisland",
+        sentMessages: []
+      },
       users: [
         {
           id: 1,
@@ -37,9 +46,6 @@ export default class MainView extends React.Component {
             users: result
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         error => {
           this.setState({
             isLoaded: true,
@@ -50,17 +56,23 @@ export default class MainView extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, users } = this.state;
+    const { error, isLoaded, loggedInUser, users } = this.state;
     return (
       <>
         <section className="profile-panel">
           <div className="profile-panel__image">
-            <img src={profilePic} alt="Profile pic" />
+            <img src={loggedInUser.imgURL} alt="Profile pic" />
           </div>
           <div className="profile-panel__info">
-            <h3 className="profile-panel__info-element">first last name</h3>
-            <h3 className="profile-panel__info-element">phone number</h3>
-            <h3 className="profile-panel__info-element">email</h3>
+            <h3 className="profile-panel__info-element">
+              {loggedInUser.firstName + " " + loggedInUser.lastName}
+            </h3>
+            <h3 className="profile-panel__info-element">
+              {loggedInUser.phoneNumber}
+            </h3>
+            <h3 className="profile-panel__info-element">
+              {loggedInUser.emailAddress}
+            </h3>
           </div>
         </section>
         <h2 className="title">conversations</h2>

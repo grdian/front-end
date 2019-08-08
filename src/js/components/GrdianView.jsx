@@ -1,23 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import profilePic from "../../images/Profile-pic-stock.jpg";
 
-
-export default class LoginForm extends React.Component {
+export default class GrdianView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
       user: {
-        id: 1,
-        firstName: "Lawrence",
-        lastName: "Mboya",
+        id: 100,
+        firstName: "Guybrush",
+        lastName: "Threepwood",
         imgURL:
-          "https://images.pexels.com/photos/555790/pexels-photo-555790.png?auto=compress&cs=tinysrgb&dpr=1&w=500",
+          "https://ih1.redbubble.net/image.363229123.6653/flat,1000x1000,075,f.u1.jpg",
         phoneNumber: "1234567890",
-        emailAddress: "mboya@gmail.com",
-        password: "password",
+        emailAddress: "guybrush@gmail.com",
+        password: "monkeyisland",
         sentMessages: []
       }
     };
@@ -34,9 +31,6 @@ export default class LoginForm extends React.Component {
             user: result
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         error => {
           this.setState({
             isLoaded: true,

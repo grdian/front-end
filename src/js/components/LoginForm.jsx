@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import logo from "../../images/Grdian-logo.png";
+import { Link } from "react-router-dom";
 
 export default class LoginForm extends React.Component {
   render() {
