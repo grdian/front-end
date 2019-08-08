@@ -1,0 +1,155 @@
+/* login page and create user profile*/
+
+.main-title {
+  width: 100%;
+  margin: 1rem;
+  text-align: center;
+  font-weight: 2900;
+  color: var(--primary);
+  text-shadow: 0px 0px 15px var(--yellow);
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: var(--yellow);
+}
+
+.header__logo {
+  margin: 0 auto;
+  max-width: 6rem;
+}
+
+.input-panel {
+  padding: 1rem;
+  border: 1px solid var(--neutral-dark);
+  border-radius: 1em;
+  margin-bottom: 2rem;
+}
+
+.field-label {
+  margin: 0.2em;
+  font-size: 1.2em;
+}
+
+.field-value {
+  margin: 0.2em;
+  background-color: #fff;
+  min-width: 10em;
+  min-height: 2em;
+  overflow: hidden;
+}
+
+.input-panel__submit {
+  max-width: 60%;
+  margin: 0.5em auto;
+  text-align: center;
+  padding: 0.2em;
+  background-color: var(--neutral-dark);
+  color: var(--white);
+  border: 1px solid var(--primary);
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.input-panel__submit:hover {
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+.create-account-link {
+  margin: 1rem;
+  font-size: 1.5em;
+  text-decoration: underline;
+  color: var(--neutral-dark);
+}
+
+/* Grdian view*/
+
+.profile-panel {
+  display: flex;
+  justify-content: space-between;
+  height: 8rem;
+  margin-top: 0.5rem;
+}
+.profile-panel__image img {
+  border-radius: 100%;
+  width: 8rem;
+}
+.profile-panel__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.join-button {
+  margin-top: 6rem;
+  font-size: 1.6rem;
+  max-width: 60%;
+  padding: 0.2em;
+  background-color: var(--neutral-dark);
+  color: var(--white);
+  border: 1px solid var(--primary);
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.join-button:hover {
+  background-color: var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+/* Send alert */
+
+.header {
+  background-color: var(--secondary);
+  border-bottom: 2px solid var(--neutral-dark);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.input-panel {
+  margin-top: 2rem;
+}
+.emergency {
+  color: var(--secondary);
+}
+.high {
+  color: var(--secondary);
+}
+.moderate {
+  color: var(--yellow);
+}
+.minor {
+  color: var(--primary);
+}
+
+/* User Profile */
+
+.container-convo {
+  border-top: 1px solid var(--neutral-dark);
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 100%;
+}
+.convo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid var(--neutral-dark);
+}
+.container-grdian {
+  position: absolute;
+  bottom: 3rem;
+  width: 100%;
+}
+
+.profile-grdians {
+  display: flex;
+  flex-direction: row;
+}
+.profile-grdians__image img {
+  border-radius: 100%;
+  width: 6rem;
+}
+.title {
+  text-align: left;
+  padding: 0.5rem;
+  width: 100%;
+}

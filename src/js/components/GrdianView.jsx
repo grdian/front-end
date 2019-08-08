@@ -1,7 +1,7 @@
 import React from "react";
-import "../../css/common.css";
-import "../../css/specific/login.css";
-import "../../css/responsive.css";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import profilePic from "../../images/Profile-pic-stock.jpg";
+
 
 export default class LoginForm extends React.Component {
   constructor(props) {

@@ -1,7 +1,5 @@
 import React from "react";
-import "../../css/common.css";
-import "../../css/specific/userProfile.css";
-import "../../css/responsive.css";
+import "../../css/specific/mainView.css"
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import logo from "../../images/grdian_logo.png";
 import profilePic from "../../images/Profile-pic-stock.jpg";
