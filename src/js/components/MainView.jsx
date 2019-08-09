@@ -58,6 +58,11 @@ export default class MainView extends React.Component {
     const { error, isLoaded, loggedInUser, users } = this.state;
     return (
       <>
+        <button className="alert-button__main">
+          <Link to="/send">
+            <h1>alert grdians</h1>
+          </Link>
+        </button>
         <section className="profile-panel">
           <div className="profile-panel__image">
             <img src={loggedInUser.imgURL} alt="Profile pic" />

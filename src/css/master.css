@@ -1,26 +1,10 @@
 /* login page and create user profile*/
 
-.main-title {
-  width: 100%;
+.create-account-link {
   margin: 1rem;
-  text-align: center;
-  font-weight: 2900;
-  color: var(--primary);
-  text-shadow: 0px 0px 15px var(--yellow);
-  -webkit-text-stroke-width: 0.4px;
-  -webkit-text-stroke-color: var(--yellow);
-}
-
-.header__logo {
-  margin: 0 auto;
-  max-width: 6rem;
-}
-
-.input-panel {
-  padding: 1rem;
-  border: 1px solid var(--neutral-dark);
-  border-radius: 1em;
-  margin-bottom: 2rem;
+  font-size: 1.5em;
+  text-decoration: underline;
+  color: var(--neutral-dark);
 }
 
 .field-label {
@@ -36,10 +20,24 @@
   overflow: hidden;
 }
 
-.input-panel__submit {
-  max-width: 60%;
+.header__logo {
+  margin: 0 auto;
+  max-width: 6rem;
+}
+
+.input-panel {
+  padding: 1rem;
+  border: 1px solid var(--neutral-dark);
+  border-radius: 1em;
+  margin-bottom: 2rem;
+}
+
+.join-button {
+  display: flex;
+  justify-content: center;
+  font-size: 1.6rem;
   margin: 0.5em auto;
-  text-align: center;
+  max-width: 60%;
   padding: 0.2em;
   background-color: var(--neutral-dark);
   color: var(--white);
@@ -48,16 +46,20 @@
   cursor: pointer;
 }
 
-.input-panel__submit:hover {
+.join-button:hover {
   background-color: var(--neutral-light);
   color: var(--neutral-dark);
 }
 
-.create-account-link {
+.main-title {
+  width: 100%;
   margin: 1rem;
-  font-size: 1.5em;
-  text-decoration: underline;
-  color: var(--neutral-dark);
+  text-align: center;
+  font-weight: 2900;
+  color: var(--primary);
+  text-shadow: 0px 0px 15px var(--yellow);
+  -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: var(--yellow);
 }
 
 /* Grdian view*/
@@ -77,31 +79,27 @@
   flex-direction: column;
   justify-content: space-around;
 }
-.join-button {
-  margin-top: 6rem;
-  font-size: 1.6rem;
-  max-width: 60%;
-  padding: 0.2em;
-  background-color: var(--neutral-dark);
-  color: var(--white);
-  border: 1px solid var(--primary);
-  border-radius: 0.5em;
-  cursor: pointer;
-}
-
-.join-button:hover {
-  background-color: var(--neutral-light);
-  color: var(--neutral-dark);
+.profile-panel__info-element {
+  font-size: 1rem;
 }
 
 /* Send alert */
 
-.header {
+.alert-button__send {
+  background: linear-gradient(
+    135deg,
+    var(--secondary),
+    var(--secondary),
+    #991212
+  );
   background-color: var(--secondary);
-  border-bottom: 2px solid var(--neutral-dark);
+  border: 2px solid var(--neutral-dark);
+  border-radius: 2rem;
   color: white;
+  margin-top: 1rem;
   padding: 2rem;
   text-align: center;
+  width: 100%;
 }
 .input-panel {
   margin-top: 2rem;
@@ -121,6 +119,18 @@
 
 /* User Profile */
 
+.alert-button__main {
+  background: linear-gradient(135deg, orange, #f57804, #c06b1b);
+  background-color: var(--secondary);
+  border: 2px solid var(--neutral-dark);
+  border-radius: 2rem;
+  color: white;
+  margin-top: 1rem;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
 .container-convo {
   border-top: 1px solid var(--neutral-dark);
   display: flex;
@@ -135,8 +145,7 @@
   border-bottom: 1px solid var(--neutral-dark);
 }
 .container-grdian {
-  position: absolute;
-  bottom: 3rem;
+  bottom: 4rem;
   width: 100%;
 }
 
