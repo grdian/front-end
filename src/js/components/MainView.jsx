@@ -30,7 +30,8 @@ export default class MainView extends React.Component {
           password: "lucasarts",
           sentMessages: []
         }
-      ]
+      ],
+      messages: []
     };
   }
 
@@ -52,10 +53,29 @@ export default class MainView extends React.Component {
           });
         }
       );
+
+    const jsonObject = "{reciever";
+
+    fetch("http://localhost:8080/api/messages/inbox/1")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            messages: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
 
   render() {
-    const { error, isLoaded, loggedInUser, users } = this.state;
+    const { error, isLoaded, loggedInUser, users, messages } = this.state;
     return (
       <>
         <section className="profile-panel">
@@ -76,14 +96,12 @@ export default class MainView extends React.Component {
         </section>
         <h2 className="title">conversations</h2>
         <section className="container-convo">
-          <div className="convo">
-            <h4>John Doe</h4>
-            <p>HELP ME!</p>
-          </div>
-          <div className="convo">
-            <h4>Bill Bo</h4>
-            <p>I need help!</p>
-          </div>
+          {messages.map(message => (
+            <div key={message.id} className="convo">
+              <h4>Sender</h4>
+              <p>{message.body}</p>
+            </div>
+          ))}
         </section>
 
         <div className="container-grdian">
