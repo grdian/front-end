@@ -1,5 +1,4 @@
 import React from "react";
-import "../../css/specific/mainView.css";
 import { Link } from "react-router-dom";
 
 export default class MainView extends React.Component {

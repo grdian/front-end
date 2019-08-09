@@ -120,7 +120,7 @@
 /* User Profile */
 
 .alert-button__main {
-  background: linear-gradient(135deg, orange, #f57804, #c06b1b);
+  background: linear-gradient(135deg, var(--yellow), #fffb00, #ece906);
   background-color: var(--secondary);
   border: 2px solid var(--neutral-dark);
   border-radius: 2rem;
