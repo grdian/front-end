@@ -23,7 +23,7 @@ export default class LoginForm extends React.Component {
             className="field-value"
           />
           <br />
-          <button className="input-panel__submit">
+          <button className="join-button">
             <Link to="/main">Login</Link>
           </button>
         </form>

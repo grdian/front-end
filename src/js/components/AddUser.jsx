@@ -107,7 +107,9 @@ class AddUser extends React.Component {
           placeholder="Confirm Password"
           className="field-value"
         />
-        <button className="input-panel__submit">Create</button>
+        <button className="join-button">
+          <Link to="/main">Create</Link>
+        </button>
       </form>
     );
   }
