@@ -1,12 +1,11 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import CreateProfile from "./components/CreateProfile";
-import MainView from "./components/MainView";
-import SendAlert from "./components/SendAlert";
-import GrdianView from "./components/GrdianView";
-import Layout from "./components/Layout";
-import AddUser from "./components/AddUser";
+import LoginForm from "./js/components/LoginForm";
+import CreateProfile from "./js/components/CreateProfile";
+import MainView from "./js/components/MainView";
+import SendAlert from "./js/components/SendAlert";
+import GrdianView from "./js/components/GrdianView";
+import Layout from "./js/components/Layout";
 
 export default function App() {
   return (

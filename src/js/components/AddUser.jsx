@@ -26,9 +26,8 @@ class AddUser extends React.Component {
         emailAddress: this.state.emailAddress,
         password: this.state.password
       })
-    })
-      .then(res => res.json())
-      .then(users => this.props.AddUser(users));
+    }).then(res => console.log(res));
+    //router redirect to userProfileView
   };
 
   updateFirstName = event => {
@@ -108,9 +107,7 @@ class AddUser extends React.Component {
           placeholder="Confirm Password"
           className="field-value"
         />
-        <h3 className="input-panel__submit">
-          <Link to="/main">create</Link>
-        </h3>
+        <button className="input-panel__submit">Create</button>
       </form>
     );
   }
