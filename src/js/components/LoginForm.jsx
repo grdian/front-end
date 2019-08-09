@@ -10,14 +10,14 @@ export default class LoginForm extends React.Component {
         <form className="input-panel">
           <h3 className="field-label">Email:</h3>
           <input
-            type="text"
+            type="email"
             required
             placeholder="so-and-so@domain.com"
             className="field-value"
           />
           <h3 className="field-label">Password:</h3>
           <input
-            type="text"
+            type="password"
             required
             placeholder="password"
             className="field-value"

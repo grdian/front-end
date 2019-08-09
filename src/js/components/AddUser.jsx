@@ -78,7 +78,7 @@ class AddUser extends React.Component {
         />
         <h3 className="field-label">Phone Number:</h3>
         <input
-          type="text"
+          type="tel"
           required
           placeholder="1234567890"
           className="field-value"
@@ -86,7 +86,7 @@ class AddUser extends React.Component {
         />
         <h3 className="field-label">Email:</h3>
         <input
-          type="text"
+          type="email"
           required
           placeholder="so-and-so@domain.com"
           className="field-value"
@@ -94,7 +94,7 @@ class AddUser extends React.Component {
         />
         <h3 className="field-label">Password:</h3>
         <input
-          type="text"
+          type="password"
           required
           placeholder="password"
           className="field-value"
@@ -102,7 +102,7 @@ class AddUser extends React.Component {
         />
         <h3 className="field-label">Confirm Password:</h3>
         <input
-          type="text"
+          type="password"
           required
           placeholder="Confirm Password"
           className="field-value"

@@ -58,7 +58,7 @@ export default class MainView extends React.Component {
     const { error, isLoaded, loggedInUser, users } = this.state;
     return (
       <>
-        <button className="alert-button">
+        <button className="alert-button__main">
           <Link to="/send">
             <h1>alert grdians</h1>
           </Link>
