@@ -54,8 +54,6 @@ export default class MainView extends React.Component {
         }
       );
 
-    const jsonObject = "{reciever";
-
     fetch("http://localhost:8080/api/messages/inbox/1")
       .then(res => res.json())
       .then(
