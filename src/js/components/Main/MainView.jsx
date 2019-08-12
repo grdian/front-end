@@ -131,8 +131,8 @@ class MainView extends Component {
             </h3>
           </div>
         </section>
-        <h2 className="title">Alerts</h2>
         <section className="container-convo">
+        <h2 className="title">Alerts</h2>
           {alerts.map(alert => (
             <Link to={"/alerts/" + alert.id}>
               <div key={alert.id} className="convo">
@@ -143,7 +143,7 @@ class MainView extends Component {
           ))}
         </section>
 
-        <div className="container-grdian">
+        <div className="container-grdians">
           <h2 className="title">grdians</h2>
           <section className="profile-grdians">
             {grdians.map(grdian => (
