@@ -20,26 +20,4 @@ class NewAlertForm extends Component {
 	}
 }
 
-// REDUX-RELATED FUNCTIONS BELOW ---------------------------
-
-const mapStateToProps = state => {
-	return {
-		loggedInUser: state.loggedInUser
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		setLoggedInUserId: userId => {
-			dispatch({
-				type: "SET_ID",
-				payload: userId
-			});
-		}
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(NewAlertForm);
+export default NewAlertForm;

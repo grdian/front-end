@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TempNav from "../../Temp/TempNav";
 
 class Footer extends Component {
 	constructor(props) {
@@ -9,6 +10,7 @@ class Footer extends Component {
 		return (
 			<React.Fragment>
 				<footer className="footer">
+					<TempNav />
 					<h4>&copy; {new Date().getFullYear()} grdian Inc.</h4>
 				</footer>
 			</React.Fragment>

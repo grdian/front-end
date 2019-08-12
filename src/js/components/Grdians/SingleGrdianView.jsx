@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-class ActiveAlertForm extends Component {
+class SingleGrdianView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -46,7 +46,7 @@ class ActiveAlertForm extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h2>ActiveAlert Form</h2>
+				<h2>SingleGrdianView</h2>
 				<h3>
 					User:
 					{this.state.loggedInUser.firstName +
@@ -80,4 +80,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ActiveAlertForm);
+)(SingleGrdianView);

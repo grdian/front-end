@@ -25,7 +25,7 @@ class AlertForm extends Component {
 
 	componentDidMount() {
 		const loggedInUserId = this.props.loggedInUser.id;
-		if (loggedInUserId == -1) {
+		if (loggedInUserId === undefined || loggedInUserId == -1) {
 			this.props.history.push("/login");
 		} else {
 			fetch("http://localhost:8080/api/allgrdians/" + loggedInUserId)

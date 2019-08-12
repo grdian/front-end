@@ -10,6 +10,8 @@ import MainView from "./js/components/Main/MainView";
 import LoginForm from "./js/components/Authentication/LoginForm";
 import SignUpForm from "./js/components/Authentication/SignUpForm";
 import AlertForm from "./js/components/Alert/AlertForm";
+import AllGrdiansView from "./js/components/Grdians/AllGrdiansView";
+import SingleGrdianView from "./js/components/Grdians/SingleGrdianView";
 
 class App extends Component {
 	constructor(props) {
@@ -42,6 +44,16 @@ class App extends Component {
 							exact
 							path="/alert"
 							render={props => <AlertForm {...props} />}
+						/>
+						<Route
+							exact
+							path="/grdians"
+							render={props => <AllGrdiansView {...props} />}
+						/>
+						<Route
+							exact
+							path="/grdians/:id"
+							render={props => <SingleGrdianView {...props} />}
 						/>
 					</Switch>
 				</Layout>

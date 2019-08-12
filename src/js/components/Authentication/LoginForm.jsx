@@ -13,28 +13,6 @@ class LoginForm extends Component {
 		this.handleLogin = this.handleLogin.bind(this);
 	}
 
-	componentDidMount() {
-		const loggedInUserId = this.props.loggedInUser.id;
-		if (loggedInUserId != -1) {
-			fetch("http://localhost:8080/api/allgrdians/" + loggedInUserId)
-				.then(res => res.json())
-				.then(
-					result => {
-						this.setState({
-							isLoaded: true,
-							loggedInUser: result
-						});
-					},
-					error => {
-						this.setState({
-							isLoaded: true,
-							error
-						});
-					}
-				);
-		}
-	}
-
 	async handleLogin(event) {
 		event.preventDefault();
 		const { loginPost } = this.state;
@@ -83,8 +61,8 @@ class LoginForm extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h2>Login Form</h2>
-				<h3>{this.props.loggedInUser.id}</h3>
+				{/* <h2>Login Form</h2>
+				<h3>{this.props.loggedInUser.id}</h3> */}
 
 				<h1 className="main-title">grdian</h1>
 
