@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Header from "./Header/Header";
-import MainContainer from "./MainContainer/MainContainer";
 import Footer from "./Footer/Footer";
 
 class Layout extends Component {
@@ -13,7 +12,7 @@ class Layout extends Component {
 			<React.Fragment>
 				<div className="wrapper">
 					<Header />
-					<MainContainer>{this.props.children}</MainContainer>
+					<main className="main">{this.props.children}</main>
 					<Footer />
 				</div>
 			</React.Fragment>

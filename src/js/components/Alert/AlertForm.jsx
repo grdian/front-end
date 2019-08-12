@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-class MainView extends Component {
+// Alert Forms to Branch based on logged in user state
+import NewAlertForm from "./NewAlertForm";
+import ActiveAlertForm from "./ActiveAlertForm";
+
+class AlertForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -46,21 +50,13 @@ class MainView extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<h2>Alert Form</h2>
 				<h3>
 					User:
 					{this.state.loggedInUser.firstName +
 						" " +
 						this.state.loggedInUser.lastName}
 				</h3>
-				<Link to="/login">
-					<h3>LoginForm</h3>
-				</Link>
-				<Link to="/signup">
-					<h3>SignUpForm</h3>
-				</Link>
-				<Link to="/alert">
-					<h3>AlertForm</h3>
-				</Link>
 			</React.Fragment>
 		);
 	}
@@ -88,4 +84,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(MainView);
+)(AlertForm);
