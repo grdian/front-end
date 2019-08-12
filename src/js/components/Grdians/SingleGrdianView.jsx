@@ -51,6 +51,23 @@ class SingleGrdianView extends Component {
           }
         );
     }
+
+    fetch("http://localhost:8080/api/allgrdians/" + this.props.match.params.id)
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            singleGrdian: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
 
   render() {
