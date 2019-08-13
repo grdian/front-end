@@ -25,7 +25,7 @@ export const nullAlert = {
 
 export const nullAlertList = [nullAlert];
 
-export const signUpForm = {
+export const nullSignUpForm = {
 	firstName: "",
 	lastName: "",
 	imgURL: "",
@@ -34,7 +34,7 @@ export const signUpForm = {
 	password: ""
 };
 
-export const loginForm = {
+export const nullLoginForm = {
 	emailAddress: "",
 	password: ""
 };

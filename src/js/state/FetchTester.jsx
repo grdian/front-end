@@ -6,14 +6,7 @@ import "../../css/master.css";
 class FetchTester extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			loggedInUser: API.nullUser,
-			grdians: API.nullGrdianList,
-			singleAlert: API.nullAlert,
-			alerts: API.nullAlertList,
-			signUpForm: API.signUpForm,
-			loginForm: API.loginForm
-		};
+		this.state = {};
 	}
 
 	componentDidMount() {

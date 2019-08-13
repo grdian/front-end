@@ -1,72 +1,55 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import * as API from "../../state/io/API";
 
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loginPost: {
-				emailAddress: ""
-			}
+			loginForm: API.nullLoginForm
 		};
-		this.handleLogin = this.handleLogin.bind(this);
 	}
 
-	async handleLogin(event) {
+	attemptUserLogin = async event => {
 		event.preventDefault();
-		const { loginPost } = this.state;
+		const loginForm = this.state.loginForm;
+		console.log("On Submit! " + loginForm.emailAddress);
 
-		try {
-			const response = await fetch("http://localhost:8080/api/login", {
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json"
-				},
-				body: JSON.stringify(loginPost)
+		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
+		dataPromise
+			.then(data => {
+				this.props.setLoggedInUserId(data.id);
+			})
+			.then(() => {
+				this.props.history.push("/main");
+			})
+			.catch(exception => {
+				console.log("Invalid email or password.");
 			});
-			const grdian = await response.json();
-			this.props.setLoggedInUserId(grdian.id);
-			this.props.history.push("/main");
-		} catch (ex) {
-			console.log("The email or password provided were incorrect.");
-		}
-	}
+	};
 
 	updateEmailAddress = event => {
-		this.setState({ loginPost: { emailAddress: event.target.value } });
+		this.setState({ loginForm: { emailAddress: event.target.value } });
 	};
 
 	render() {
 		return (
 			<React.Fragment>
-				{/* <h2>Login Form</h2>
-				<h3>{this.props.loggedInUser.id}</h3> */}
-
 				<h1 className="main-title">grdian</h1>
 
-				<form className="input-panel" onSubmit={this.handleLogin}>
+				<form className="input-panel" onSubmit={this.attemptUserLogin}>
 					<h3 className="field-label">Email:</h3>
 					<input
 						type="text"
-						// required
 						placeholder="so-and-so@domain.com"
 						className="field-value"
 						onChange={this.updateEmailAddress}
 					/>
 					<h3 className="field-label">Password:</h3>
-					<input
-						type="text"
-						// required
-						placeholder="password"
-						className="field-value"
-					/>
+					<input type="text" placeholder="password" className="field-value" />
 					<br />
-					<button className="join-button">
-						Login
-						{/* <Link to="/main">Login</Link> */}
-					</button>
+					<button className="join-button">Login</button>
 				</form>
 
 				<Link to="/signup">sign up / new account</Link>
