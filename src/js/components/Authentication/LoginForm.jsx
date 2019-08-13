@@ -11,33 +11,10 @@ class LoginForm extends Component {
 		};
 	}
 
-	attemptUserLogin = async event => {
-		event.preventDefault();
-		const loginForm = this.state.loginForm;
-		console.log("On Submit! " + loginForm.emailAddress);
-
-		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
-		dataPromise
-			.then(data => {
-				this.props.setLoggedInUserId(data.id);
-			})
-			.then(() => {
-				this.props.history.push("/main");
-			})
-			.catch(exception => {
-				console.log("Invalid email or password.");
-			});
-	};
-
-	updateEmailAddress = event => {
-		this.setState({ loginForm: { emailAddress: event.target.value } });
-	};
-
 	render() {
 		return (
 			<React.Fragment>
 				<h1 className="main-title">grdian</h1>
-
 				<form className="input-panel" onSubmit={this.attemptUserLogin}>
 					<h3 className="field-label">Email:</h3>
 					<input
@@ -51,11 +28,31 @@ class LoginForm extends Component {
 					<br />
 					<button className="join-button">Login</button>
 				</form>
-
 				<Link to="/signup">sign up / new account</Link>
 			</React.Fragment>
 		);
 	}
+
+	attemptUserLogin = async event => {
+		event.preventDefault();
+		const loginForm = this.state.loginForm;
+
+		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
+		dataPromise
+			.then(data => {
+				if (data !== undefined && data != null && data != "") {
+					this.props.setLoggedInUser(data);
+					this.props.history.push("/main");
+				}
+			})
+			.catch(exception => {
+				console.log("Invalid email or password.");
+			});
+	};
+
+	updateEmailAddress = event => {
+		this.setState({ loginForm: { emailAddress: event.target.value } });
+	};
 }
 
 // REDUX-RELATED FUNCTIONS BELOW ---------------------------
@@ -68,10 +65,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		setLoggedInUserId: userId => {
+		setLoggedInUser: user => {
 			dispatch({
-				type: "SET_ID",
-				payload: userId
+				type: "SET_USER",
+				payload: user
 			});
 		}
 	};
