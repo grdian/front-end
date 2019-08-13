@@ -1,90 +1,59 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import * as API from "../../state/io/API";
 
 class NewAlertForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loggedInUser: {
-        id: -1,
-        firstName: "No User Logged In",
-        lastName: "",
-        imgURL: "",
-        phoneNumber: "",
-        emailAddress: "",
-        activeAlertId: -1,
-        grdians: []
-      },
-      alertMessage: {
-        message: "I need help ASAP!",
-        level: "high",
-        location: { latitude: 0, longitude: 0 }
-      }
-    };
-    // this.handleSendAlert = this.handleSendAlert.bind(this);
+    this.state = { newAlert: API.defaultNewAlertForm };
   }
 
   componentDidMount() {
-    const loggedInUserId = this.props.loggedInUser.id;
-    if (loggedInUserId === undefined || loggedInUserId == -1) {
-      this.props.history.push("/login");
-    } else {
-      fetch("http://localhost:8080/api/allgrdians/" + loggedInUserId)
-        .then(res => res.json())
-        .then(
-          result => {
-            this.setState({
-              isLoaded: true,
-              loggedInUser: result
-            });
-          },
-          error => {
-            this.setState({
-              isLoaded: true,
-              error
-            });
-          }
-        );
-    }
+    this.verifyLoginOrRedirectToLogin();
   }
 
-  //   async handleSendAlert(event) {
-  //     const { alertMessage } = this.state;
-  //     event.preventDefault();
-
-  //     await await fetch("http://localhost:8080/api/allalerts", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify(alertMessage)
-  //     });
-  //     this.props.history.push("/main");
-  //   }
-
-  addNewMessageFetch = event => {
-    // Make sure loggedInUser.id is being correctly set into alertMessage
-    const { loggedInUser, alertMessage } = this.state;
+  sendNewAlert = event => {
     event.preventDefault();
-    console.log("Message submitted!");
-
-    fetch("http://localhost:8080/api/allalerts", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(alertMessage)
-    });
-    // this.props.history.push("/main");
+    let alertListPromise = API.postCreateNewAlert(
+      this.props.loggedInUser.id,
+      this.state.newAlert.message,
+      this.state.newAlert.urgency,
+      this.state.newAlert.location
+    );
+    alertListPromise
+      .then(data => {
+        console.log(data);
+        // this.props.history.push("/main");
+      })
+      .then(() => {
+        this.props.history.push("/main");
+      });
   };
 
-  updateBody = event => {
+  updateMessage = event => {
     this.setState({
-      alertMessage: {
+      newAlert: {
+        ...this.state.newAlert,
         message: event.target.value
+      }
+    });
+  };
+
+  updateUrgency = event => {
+    this.setState({
+      newAlert: {
+        ...this.state.newAlert,
+        urgency: event.target.value
+      }
+    });
+  };
+
+  updateLocation = event => {
+    this.setState({
+      newAlert: {
+        ...this.state.newAlert,
+        location: event.target.value
       }
     });
   };
@@ -92,15 +61,10 @@ class NewAlertForm extends Component {
   render() {
     return (
       <React.Fragment>
+        <h1>{this.props.loggedInUser.firstName}</h1>
         <h2>NewAlert Form</h2>
-        <h3>
-          User:
-          {this.state.loggedInUser.firstName +
-            " " +
-            this.state.loggedInUser.lastName}
-        </h3>
 
-        <form onSubmit={this.addNewMessageFetch}>
+        <form onSubmit={this.sendNewAlert}>
           <button className="alert-button__send">
             <h1>send alert</h1>
           </button>
@@ -109,37 +73,52 @@ class NewAlertForm extends Component {
             <input
               type="text"
               required
-              defaultValue="I need help ASAP!"
+              defaultValue={this.state.newAlert.message}
               contentEditable="true"
               className="field-value"
-              onChange={this.updateBody}
+              onChange={this.updateMessage}
             />
             <h3 className="field-label">Urgency Level:</h3>
-            <select name="urgency">
-              <option className="emergency" value="emergency">
-                EMERGENCY
+            <select name="urgency" onChange={this.updateUrgency}>
+              <option className="emergency" value={API.URGENCY_LEVELS[0]}>
+                {API.URGENCY_LEVELS[0]}
               </option>
-              <option className="high" value="high">
-                HIGH
+              <option className="high" value={API.URGENCY_LEVELS[1]}>
+                {API.URGENCY_LEVELS[1]}
               </option>
-              <option className="moderate" value="moderate">
-                Moderate
+              <option className="moderate" value={API.URGENCY_LEVELS[2]}>
+                {API.URGENCY_LEVELS[2]}
               </option>
-              <option className="minor" value="minor">
-                Minor
+              <option className="minor" value={API.URGENCY_LEVELS[3]}>
+                {API.URGENCY_LEVELS[3]}
               </option>
             </select>
             <h3 className="field-label">Location:</h3>
             <input
               type="text"
-              placeholder="(40.545542, -83.453453)"
+              placeholder={this.state.newAlert.location}
               className="field-value"
+              onChange={this.updateLocation}
             />
           </section>
         </form>
       </React.Fragment>
     );
   }
+
+  verifyLoginOrRedirectToLogin = () => {
+    if (
+      this.props.loggedInUser === undefined ||
+      this.props.loggedInUser.id == -1
+    ) {
+      console.log("Redirecting to Login.");
+      this.props.history.push("/login");
+      // Failed to login, return false to avoid running async state tasks
+      return false;
+    }
+    // Successfully logged in, return true to begin executing async state tasks
+    return true;
+  };
 }
 
 // REDUX-RELATED FUNCTIONS BELOW ---------------------------
@@ -152,10 +131,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoggedInUserId: userId => {
+    setLoggedInUser: user => {
       dispatch({
-        type: "SET_ID",
-        payload: userId
+        type: "SET_USER",
+        payload: user
       });
     }
   };
