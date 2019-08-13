@@ -15,33 +15,33 @@ import SingleGrdianView from "./js/components/Grdians/SingleGrdianView";
 import SingleAlertView from "./js/components/Alert/SingleAlertView";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
 
-  render() {
-    return (
-      <Router>
-        <Layout>
-          <Switch>
-            <Route exact path="/" render={props => <MainView {...props} />} />
-            <Route
-              exact
-              path="/main"
-              render={props => <MainView {...props} />}
-            />
-            <Route
-              exact
-              path="/login"
-              render={props => <LoginForm {...props} />}
-            />
-            <Route
-              exact
-              path="/signup"
-              render={props => <SignUpForm {...props} />}
-            />
-            <Route
+	render() {
+		return (
+			<Router>
+				<Layout>
+					<Switch>
+						<Route exact path="/" render={props => <MainView {...props} />} />
+						<Route
+							exact
+							path="/main"
+							render={props => <MainView {...props} />}
+						/>
+						<Route
+							exact
+							path="/login"
+							render={props => <LoginForm {...props} />}
+						/>
+						<Route
+							exact
+							path="/signup"
+							render={props => <SignUpForm {...props} />}
+						/>
+						{/* <Route
               exact
               path="/alert"
               render={props => <AlertForm {...props} />}
@@ -60,12 +60,12 @@ class App extends Component {
               exact
               path="/grdians/:id"
               render={props => <SingleGrdianView {...props} />}
-            />
-          </Switch>
-        </Layout>
-      </Router>
-    );
-  }
+            /> */}
+					</Switch>
+				</Layout>
+			</Router>
+		);
+	}
 }
 
 export default App;

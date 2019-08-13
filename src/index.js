@@ -4,6 +4,7 @@ import App from "./App";
 import { createStore } from "redux";
 import allReducers from "./js/state/reducers/reducers";
 import { Provider } from "react-redux";
+import FetchTester from "./js/state/FetchTester";
 
 const globalDataStore = createStore(
 	allReducers,
@@ -16,3 +17,5 @@ ReactDOM.render(
 	</Provider>,
 	document.querySelector("#root")
 );
+
+// ReactDOM.render(<FetchTester />, document.querySelector("#root"));
