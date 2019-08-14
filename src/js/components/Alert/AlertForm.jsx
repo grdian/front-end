@@ -1,64 +1,68 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as API from "../../state/API";
 
 // Alert Forms to Branch based on logged in user state
 import NewAlertForm from "./NewAlertForm";
 import ActiveAlertForm from "./ActiveAlertForm";
 
 class AlertForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+	constructor(props) {
+		super(props);
+		this.state = { redirectToLogin: false };
+	}
 
-  componentDidMount() {
-    this.verifyLoginOrRedirectToLogin();
-  }
+	userIsLoggedIn = () => {
+		if (this.props.loggedInUser.id === -1) {
+			this.setState({ redirectToLogin: true });
+			return false;
+		}
+		return true;
+	};
 
-  render() {
-    return (
-      <React.Fragment>
-        <NewAlertForm />
-      </React.Fragment>
-    );
-  }
+	componentDidMount() {
+		if (this.userIsLoggedIn() == false) {
+			this.setState({ redirectToLogin: true });
+			return;
+		}
+	}
 
-  verifyLoginOrRedirectToLogin = () => {
-    if (
-      this.props.loggedInUser === undefined ||
-      this.props.loggedInUser.id == -1
-    ) {
-      console.log("Redirecting to Login.");
-      this.props.history.push("/login");
-      // Failed to login, return false to avoid running async state tasks
-      return false;
-    }
-    // Successfully logged in, return true to begin executing async state tasks
-    return true;
-  };
+	render() {
+		if (this.state.redirectToLogin === true) {
+			console.log("redirecting to login");
+			return <Redirect to="/login" />;
+		}
+		if (this.props.loggedInUser.activeAlertId === -1) {
+			console.log("returning NEW alert form");
+			return <NewAlertForm />;
+		} else {
+			console.log("returning ACTIVE alert form");
+			return <ActiveAlertForm />;
+		}
+	}
 }
 
 // REDUX-RELATED FUNCTIONS BELOW ---------------------------
 
 const mapStateToProps = state => {
-  return {
-    loggedInUser: state.loggedInUser
-  };
+	return {
+		loggedInUser: state.loggedInUser
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    setLoggedInUser: user => {
-      dispatch({
-        type: "SET_USER",
-        payload: user
-      });
-    }
-  };
+	return {
+		setLoggedInUser: user => {
+			dispatch({
+				type: "SET_USER",
+				payload: user
+			});
+		}
+	};
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(AlertForm);

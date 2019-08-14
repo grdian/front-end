@@ -13,8 +13,8 @@ class LoginForm extends Component {
 		event.preventDefault();
 		const loginForm = this.state.loginForm;
 
-		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
-		dataPromise
+		let userPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
+		userPromise
 			.then(data => {
 				if (data !== undefined && data != null && data != "") {
 					this.props.setLoggedInUser(data);

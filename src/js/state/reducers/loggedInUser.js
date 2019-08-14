@@ -1,21 +1,18 @@
-const loggedInUserReducer = (
-	state = {
-		id: -1,
-		firstName: "No User Logged In",
-		lastName: "",
-		imgURL: "",
-		phoneNumber: "",
-		emailAddress: "",
-		activeAlertId: -1,
-		grdians: []
-	},
-	action
-) => {
+import { nullUser } from "../API";
+
+const loggedInUserReducer = (state = { ...nullUser }, action) => {
 	switch (action.type) {
 		case "SET_ID": {
 			state = {
 				...state,
 				id: action.payload
+			};
+			break;
+		}
+		case "SET_ALERT_ID": {
+			state = {
+				...state,
+				activeAlertId: action.payload
 			};
 			break;
 		}

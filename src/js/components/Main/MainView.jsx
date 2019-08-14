@@ -39,6 +39,15 @@ class MainView extends Component {
 		}
 	}
 
+	refetchLoggedInUser = () => {
+		let userPromise = API.getSpecificGrdian(this.props.loggedInUser.id);
+		userPromise.then(data => {
+			if (data !== undefined && data != null && data != "") {
+				this.props.setLoggedInUser(data);
+			}
+		});
+	};
+
 	render() {
 		if (this.state.redirectToLogin === true) {
 			return <Redirect to="/login" />;
@@ -50,7 +59,7 @@ class MainView extends Component {
 		return (
 			<React.Fragment>
 				<button className="alert-button__main">
-					<Link to="/alert">
+					<Link to="/alertform">
 						<h1>alert grdians</h1>
 					</Link>
 				</button>

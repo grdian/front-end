@@ -1,58 +1,59 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as API from "../../state/API";
 
 class ActiveAlertForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loggedInUser: {
-				id: -1,
-				firstName: "No User Logged In",
-				lastName: "",
-				imgURL: "",
-				phoneNumber: "",
-				emailAddress: "",
-				activeAlertId: -1,
-				grdians: []
-			}
+			redirectToLogin: false,
+			redirectToAlertForm: false,
+			activeAlert: API.nullAlert
 		};
 	}
 
-	componentDidMount() {
-		const loggedInUserId = this.props.loggedInUser.id;
-		if (loggedInUserId === undefined || loggedInUserId == -1) {
-			this.props.history.push("/login");
-		} else {
-			fetch("http://localhost:8080/api/allgrdians/" + loggedInUserId)
-				.then(res => res.json())
-				.then(
-					result => {
-						this.setState({
-							isLoaded: true,
-							loggedInUser: result
-						});
-					},
-					error => {
-						this.setState({
-							isLoaded: true,
-							error
-						});
-					}
-				);
+	userIsLoggedIn = () => {
+		if (this.props.loggedInUser.id === -1) {
+			this.setState({ redirectToLogin: true });
+			return false;
 		}
+		return true;
+	};
+
+	componentDidMount() {
+		if (this.userIsLoggedIn() == false) {
+			this.setState({ redirectToLogin: true });
+			return;
+		}
+		if (this.props.loggedInUser.activeAlertId === -1) {
+			this.setState({ redirectToAlertForm: true });
+			return;
+		}
+		let alertPromise = API.getSpecificAlert(
+			this.props.loggedInUser.activeAlertId
+		);
+		alertPromise.then(data => {
+			this.setState({ activeAlert: data });
+		});
 	}
 
 	render() {
+		if (this.state.redirectToLogin === true) {
+			return <Redirect to="/login" />;
+		}
+		if (this.state.redirectToAlertForm === true) {
+			return <Redirect to="/alertform" />;
+		}
 		return (
 			<React.Fragment>
-				<h2>ActiveAlert Form</h2>
+				<h2>Active Alert</h2>
 				<h3>
-					User:
-					{this.state.loggedInUser.firstName +
+					{this.props.loggedInUser.firstName +
 						" " +
-						this.state.loggedInUser.lastName}
+						this.props.loggedInUser.lastName}
 				</h3>
+				<h1>&quot;{this.state.activeAlert.message}&quot;</h1>
 			</React.Fragment>
 		);
 	}
