@@ -1,11 +1,18 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
-import { render } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { createStore } from "redux";
+import allReducers from "./js/state/reducers/reducers";
+import { Provider } from "react-redux";
 
-render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.querySelector("#root")
+const globalDataStore = createStore(
+	allReducers,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+ReactDOM.render(
+	<Provider store={globalDataStore}>
+		<App />
+	</Provider>,
+	document.querySelector("#root")
 );
