@@ -22,7 +22,7 @@ class NewAlertForm extends Component {
 	};
 
 	componentDidMount() {
-		this.verifyLoginOrRedirectToLogin();
+		this.userIsLoggedIn();
 	}
 
 	sendNewAlert = event => {
@@ -75,8 +75,11 @@ class NewAlertForm extends Component {
 
 		return (
 			<React.Fragment>
-				<h1>{this.props.loggedInUser.firstName}</h1>
-				<h2>NewAlert Form</h2>
+				<h2>
+					{this.props.loggedInUser.firstName +
+						" " +
+						this.props.loggedInUser.lastName}
+				</h2>
 
 				<form onSubmit={this.sendNewAlert}>
 					<button className="alert-button__send">

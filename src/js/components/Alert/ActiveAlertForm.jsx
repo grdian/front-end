@@ -1,58 +1,46 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import * as API from "../../state/API";
 
 class ActiveAlertForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			loggedInUser: {
-				id: -1,
-				firstName: "No User Logged In",
-				lastName: "",
-				imgURL: "",
-				phoneNumber: "",
-				emailAddress: "",
-				activeAlertId: -1,
-				grdians: []
-			}
-		};
+		this.state = { redirectToLogin: false, activeAlert: API.nullAlert };
 	}
 
+	userIsLoggedIn = () => {
+		if (this.props.loggedInUser.id === -1) {
+			this.setState({ redirectToLogin: true });
+			return false;
+		}
+		return true;
+	};
+
 	componentDidMount() {
-		const loggedInUserId = this.props.loggedInUser.id;
-		if (loggedInUserId === undefined || loggedInUserId == -1) {
-			this.props.history.push("/login");
-		} else {
-			fetch("http://localhost:8080/api/allgrdians/" + loggedInUserId)
-				.then(res => res.json())
-				.then(
-					result => {
-						this.setState({
-							isLoaded: true,
-							loggedInUser: result
-						});
-					},
-					error => {
-						this.setState({
-							isLoaded: true,
-							error
-						});
-					}
-				);
+		if (this.userIsLoggedIn()) {
+			let alertPromise = API.getSpecificAlert(
+				this.props.loggedInUser.activeAlertId
+			);
+			alertPromise.then(data => {
+				this.setState({ activeAlert: data });
+			});
 		}
 	}
 
 	render() {
+		if (this.state.redirectToLogin === true) {
+			return <Redirect to="/login" />;
+		}
 		return (
 			<React.Fragment>
-				<h2>ActiveAlert Form</h2>
+				<h2>Active Alert</h2>
 				<h3>
-					User:
-					{this.state.loggedInUser.firstName +
+					{this.props.loggedInUser.firstName +
 						" " +
-						this.state.loggedInUser.lastName}
+						this.props.loggedInUser.lastName}
 				</h3>
+				<h1>&quot;{this.state.activeAlert.message}&quot;</h1>
 			</React.Fragment>
 		);
 	}
