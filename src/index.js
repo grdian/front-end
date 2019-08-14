@@ -1,7 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LoginForm from "./js/components/LoginForm";
+import App from "./App";
+import { createStore } from "redux";
+import allReducers from "./js/state/reducers/reducers";
+import { Provider } from "react-redux";
 
-// const element = <h1>Welcome to grdian</h1>;
+const globalDataStore = createStore(
+	allReducers,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
-ReactDOM.render(<LoginForm />, document.getElementById("root"));
+ReactDOM.render(
+	<Provider store={globalDataStore}>
+		<App />
+	</Provider>,
+	document.querySelector("#root")
+);

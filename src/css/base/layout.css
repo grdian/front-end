@@ -1,0 +1,69 @@
+/* PRIMARY CONTENT LAYOUT */
+/* The below is for layout and styling of the main content areas, but not the specific content itself. 
+Main content areas include the page-wrapper, header/nav, main, and footer. */
+
+.wrapper {
+	/* Never allow the wrapper to grow larger than the viewport */
+	max-width: 100vw;
+	/* Force wrapper to take up at least as much vertical space as the viewport height*/
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	/* wrapper should render behind all other elements */
+	z-index: -1000;
+}
+
+/* Header Styling */
+/* -------------------------------------------------- */
+
+.header {
+	width: 100%;
+	padding: 0.2rem 0.1rem;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	color: var(--neutral-dark);
+	background-color: var(--white);
+	border-bottom: 1px solid var(--neutral-light-2);
+}
+
+.header__logo {
+	width: 2rem;
+	height: 2rem;
+}
+
+/* Main Content Styling */
+/* -------------------------------------------------- */
+
+.main {
+	flex-grow: 1;
+	width: 100%;
+	padding: 0.3rem 0.1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	color: var(--neutral-dark);
+	background-color: var(--neutral-light);
+}
+
+/* Footer Styling */
+/* -------------------------------------------------- */
+
+.footer {
+	width: 100%;
+	min-height: 5vh;
+	padding: 0.2rem 0.1rem;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	color: var(--primary-dark);
+	background-color: var(--primary);
+	box-shadow: 0rem 0rem 0.4rem 0.02rem var(--dark-1);
+}

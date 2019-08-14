@@ -1,0 +1,12 @@
+.pageLabel {
+	font-size: 0.8rem;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 9999;
+	text-align: center;
+	color: #26a9;
+	border: 1px solid #26a3;
+	border-radius: 0.5rem;
+	padding: 0.2rem;
+}
