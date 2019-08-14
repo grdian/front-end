@@ -1,0 +1,192 @@
+/* Remove all inherent styling to begin from scratch. */
+@import url("./base/clean-reset.css");
+/* Define color palette. */
+@import url("./base/color-palette.css");
+/* Set standard global config for a few properties such as fonts, sizing, and overflow behavior. */
+@import url("./base/config.css");
+/* Style the base page layout that will be used across all pages. */
+@import url("./base/layout.css");
+
+/* -------------------- COPIED CSS FROM PREVIOUS BRANCH BELOW -------------------- */
+
+/* login page and create user profile*/
+
+.create-account-link {
+	margin: 1rem;
+	font-size: 1.5em;
+	text-decoration: underline;
+	color: var(--neutral-dark);
+}
+
+.field-label {
+	margin: 0.2em;
+	font-size: 1.2em;
+}
+
+.field-value {
+	margin: 0.2em;
+	background-color: #fff;
+	min-width: 10em;
+	min-height: 2em;
+	overflow: hidden;
+}
+
+.header__logo {
+	margin: 0 auto;
+	max-width: 6rem;
+}
+
+.input-panel {
+	padding: 1rem;
+	border: 1px solid var(--neutral-dark);
+	border-radius: 1em;
+	margin-bottom: 2rem;
+}
+
+.join-button {
+	display: flex;
+	justify-content: center;
+	font-size: 1.6rem;
+	margin: 0.5em auto;
+	max-width: 60%;
+	padding: 0.2em;
+	background-color: var(--neutral-dark);
+	color: var(--white);
+	border: 1px solid var(--primary);
+	border-radius: 0.5em;
+	cursor: pointer;
+}
+
+.join-button:hover {
+	background-color: var(--neutral-light);
+	color: var(--neutral-dark);
+}
+
+.main-title {
+	width: 100%;
+	margin: 1rem;
+	text-align: center;
+	font-weight: 2900;
+	color: var(--primary);
+	text-shadow: 0px 0px 15px var(--secondary);
+	-webkit-text-stroke-width: 0.4px;
+	-webkit-text-stroke-color: var(--secondary);
+}
+
+/* Grdian view*/
+
+.profile-panel {
+	display: flex;
+	justify-content: space-between;
+	height: 8rem;
+	margin-top: 0.5rem;
+}
+.profile-panel__image img {
+	border-radius: 100%;
+	width: 8rem;
+}
+.profile-panel__info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.profile-panel__info-element {
+	font-size: 1rem;
+}
+
+/* Send alert */
+
+.alert-button__send {
+	background: linear-gradient(
+		135deg,
+		var(--alert),
+		var(--alert),
+		var(--alert-dark)
+	);
+	background-color: var(--alert);
+	border: 2px solid var(--neutral-dark);
+	border-radius: 2rem;
+	color: white;
+	margin-top: 1rem;
+	padding: 2rem;
+	text-align: center;
+	width: 100%;
+}
+.input-panel {
+	margin-top: 2rem;
+}
+.emergency {
+	color: var(--alert);
+}
+.high {
+	color: var(--alert);
+}
+.moderate {
+	color: var(--secondary);
+}
+.minor {
+	color: var(--primary);
+}
+
+/* User Profile */
+
+.alert-button__main {
+	background: linear-gradient(
+		135deg,
+		var(--secondary),
+		var(--secondary-alt-1),
+		var(--secondary-alt-2)
+	);
+	background-color: var(--alert);
+	border: 2px solid var(--neutral-dark);
+	border-radius: 2rem;
+	color: var(--primary);
+	margin-top: 1rem;
+	padding: 2rem;
+	text-align: center;
+}
+
+.container-convo {
+	padding: 1rem;
+	border: 1px solid var(--neutral-dark);
+	border-radius: 1em;
+	background: linear-gradient(
+		135deg,
+		var(--primary-light),
+		var(--neutral-light),
+		var(--secondary-light-1)
+	);
+	margin: 2rem 0;
+	width: 20rem;
+}
+.convo {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--neutral-light);
+	border: 0.5px solid var(--neutral-dark);
+	border-radius: 1em;
+	margin: 0.1rem 0;
+	padding: 0.5rem;
+}
+.container-grdians {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	padding: 1rem;
+	align-items: center;
+	width: 20rem;
+}
+
+.profile-grdians {
+	display: flex;
+	flex-direction: row;
+	overflow: scroll;
+}
+.profile-grdians__image img {
+	border-radius: 100%;
+	min-width: 6rem;
+}
+.title {
+	text-align: left;
+	width: 100%;
+}
