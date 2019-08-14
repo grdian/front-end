@@ -9,6 +9,13 @@ const loggedInUserReducer = (state = { ...nullUser }, action) => {
 			};
 			break;
 		}
+		case "SET_ALERT_ID": {
+			state = {
+				...state,
+				activeAlertId: action.payload
+			};
+			break;
+		}
 		case "SET_USER": {
 			state = { ...action.payload };
 			break;

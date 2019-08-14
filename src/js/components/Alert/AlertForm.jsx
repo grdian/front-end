@@ -22,26 +22,22 @@ class AlertForm extends Component {
 	};
 
 	componentDidMount() {
-		if (this.userIsLoggedIn()) {
-			this.refetchLoggedInUser();
+		if (this.userIsLoggedIn() == false) {
+			this.setState({ redirectToLogin: true });
+			return;
 		}
 	}
 
-	refetchLoggedInUser = () => {
-		let userPromise = API.getSpecificGrdian(this.props.loggedInUser.id);
-		userPromise.then(data => {
-			if (data !== undefined && data != null && data != "") {
-				this.props.setLoggedInUser(data);
-			}
-		});
-	};
-
 	render() {
 		if (this.state.redirectToLogin === true) {
+			console.log("redirecting to login");
 			return <Redirect to="/login" />;
-		} else if (this.props.loggedInUser.activeAlertId === -1) {
+		}
+		if (this.props.loggedInUser.activeAlertId === -1) {
+			console.log("returning NEW alert form");
 			return <NewAlertForm />;
 		} else {
+			console.log("returning ACTIVE alert form");
 			return <ActiveAlertForm />;
 		}
 	}

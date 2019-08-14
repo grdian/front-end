@@ -57,20 +57,20 @@ class App extends Component {
 								path="/alertform"
 								render={props => <AlertForm {...props} />}
 							/>
-							{/* <Route
-              exact
-              path="/alerts/:id"
-              render={props => <SingleAlertView {...props} />}
-            /> */}
+							<Route
+								exact
+								path="/grdians/:id"
+								render={props => <SingleGrdianView {...props} />}
+							/>
+							<Route
+								exact
+								path="/alerts/:id"
+								render={props => <SingleAlertView {...props} />}
+							/>
 							{/* <Route
               exact
               path="/grdians"
               render={props => <AllGrdiansView {...props} />}
-            /> */}
-							{/* <Route
-              exact
-              path="/grdians/:id"
-              render={props => <SingleGrdianView {...props} />}
             /> */}
 						</Switch>
 					</Layout>

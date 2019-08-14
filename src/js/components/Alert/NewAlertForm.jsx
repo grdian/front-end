@@ -9,6 +9,7 @@ class NewAlertForm extends Component {
 		this.state = {
 			redirectToLogin: false,
 			redirectToMain: false,
+			redirectToAlertForm: false,
 			newAlert: API.defaultNewAlertForm
 		};
 	}
@@ -27,16 +28,23 @@ class NewAlertForm extends Component {
 
 	sendNewAlert = event => {
 		event.preventDefault();
-		let alertListPromise = API.postCreateNewAlert(
+		let alertPromise = API.postCreateNewAlert(
 			this.props.loggedInUser.id,
 			this.state.newAlert.message,
 			this.state.newAlert.urgency,
 			this.state.newAlert.location
 		);
-		alertListPromise.then(data => {
-			console.log(data);
-			this.setState({ redirectToMain: true });
-		});
+		alertPromise
+			.then(data => {
+				console.log(data);
+				if (data !== undefined && data != null && data != "") {
+					this.props.setActiveAlertId(data.id);
+				}
+				this.setState({ redirectToAlertForm: true });
+			})
+			.catch(exception => {
+				console.log(exception.message);
+			});
 	};
 
 	updateMessage = event => {
@@ -69,8 +77,9 @@ class NewAlertForm extends Component {
 	render() {
 		if (this.state.redirectToLogin === true) {
 			return <Redirect to="/login" />;
-		} else if (this.state.redirectToMain === true) {
-			return <Redirect to="/main" />;
+		}
+		if (this.state.redirectToAlertForm === true) {
+			return <Redirect to="/alertform" />;
 		}
 
 		return (
@@ -138,6 +147,12 @@ const mapDispatchToProps = dispatch => {
 			dispatch({
 				type: "SET_USER",
 				payload: user
+			});
+		},
+		setActiveAlertId: activeAlertId => {
+			dispatch({
+				type: "SET_ALERT_ID",
+				payload: activeAlertId
 			});
 		}
 	};

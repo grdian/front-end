@@ -6,7 +6,11 @@ import * as API from "../../state/API";
 class ActiveAlertForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { redirectToLogin: false, activeAlert: API.nullAlert };
+		this.state = {
+			redirectToLogin: false,
+			redirectToAlertForm: false,
+			activeAlert: API.nullAlert
+		};
 	}
 
 	userIsLoggedIn = () => {
@@ -18,19 +22,28 @@ class ActiveAlertForm extends Component {
 	};
 
 	componentDidMount() {
-		if (this.userIsLoggedIn()) {
-			let alertPromise = API.getSpecificAlert(
-				this.props.loggedInUser.activeAlertId
-			);
-			alertPromise.then(data => {
-				this.setState({ activeAlert: data });
-			});
+		if (this.userIsLoggedIn() == false) {
+			this.setState({ redirectToLogin: true });
+			return;
 		}
+		if (this.props.loggedInUser.activeAlertId === -1) {
+			this.setState({ redirectToAlertForm: true });
+			return;
+		}
+		let alertPromise = API.getSpecificAlert(
+			this.props.loggedInUser.activeAlertId
+		);
+		alertPromise.then(data => {
+			this.setState({ activeAlert: data });
+		});
 	}
 
 	render() {
 		if (this.state.redirectToLogin === true) {
 			return <Redirect to="/login" />;
+		}
+		if (this.state.redirectToAlertForm === true) {
+			return <Redirect to="/alertform" />;
 		}
 		return (
 			<React.Fragment>
