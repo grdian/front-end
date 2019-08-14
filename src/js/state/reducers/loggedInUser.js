@@ -1,5 +1,3 @@
-import { nullUser } from "../io/API";
-
 const loggedInUserReducer = (
 	state = {
 		id: -1,

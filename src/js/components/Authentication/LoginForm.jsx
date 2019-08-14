@@ -1,21 +1,44 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import * as API from "../../state/io/API";
+import * as API from "../../state/API";
 
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			loginForm: API.nullLoginForm
-		};
+		this.state = { redirectToMain: false, loginForm: API.nullLoginForm };
 	}
 
+	tryUserLogin = async event => {
+		event.preventDefault();
+		const loginForm = this.state.loginForm;
+
+		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
+		dataPromise
+			.then(data => {
+				if (data !== undefined && data != null && data != "") {
+					this.props.setLoggedInUser(data);
+					this.setState({ redirectToMain: true });
+				}
+			})
+			.catch(exception => {
+				console.log("Invalid email or password.");
+			});
+	};
+
+	updateEmailAddress = event => {
+		this.setState({ loginForm: { emailAddress: event.target.value } });
+	};
+
 	render() {
+		if (this.state.redirectToMain === true) {
+			return <Redirect to="/main" />;
+		}
+
 		return (
 			<React.Fragment>
 				<h1 className="main-title">grdian</h1>
-				<form className="input-panel" onSubmit={this.attemptUserLogin}>
+				<form className="input-panel" onSubmit={this.tryUserLogin}>
 					<h3 className="field-label">Email:</h3>
 					<input
 						type="text"
@@ -32,27 +55,6 @@ class LoginForm extends Component {
 			</React.Fragment>
 		);
 	}
-
-	attemptUserLogin = async event => {
-		event.preventDefault();
-		const loginForm = this.state.loginForm;
-
-		let dataPromise = API.getSpecificGrdianByEmail(loginForm.emailAddress);
-		dataPromise
-			.then(data => {
-				if (data !== undefined && data != null && data != "") {
-					this.props.setLoggedInUser(data);
-					this.props.history.push("/main");
-				}
-			})
-			.catch(exception => {
-				console.log("Invalid email or password.");
-			});
-	};
-
-	updateEmailAddress = event => {
-		this.setState({ loginForm: { emailAddress: event.target.value } });
-	};
 }
 
 // REDUX-RELATED FUNCTIONS BELOW ---------------------------
