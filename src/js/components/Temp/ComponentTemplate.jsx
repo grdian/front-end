@@ -33,7 +33,7 @@ class ComponentTemplate extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    this.setLoginRedirect();
+    this.performLoginCheck();
 
     // Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
     let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
@@ -47,16 +47,28 @@ class ComponentTemplate extends Component {
     this._isMounted = false;
   }
 
+  performLoginCheck() {
+    //The state of the logged-in user should be updated on every page.
+    if (this.userIsNotLoggedIn()) {
+      console.log("User not logged in. Redirecting to login.");
+      this.setState({ redirectFlags: { login: true } });
+    } else {
+      console.log("Updating logged-in user.");
+      this.refetchLoggedInUser();
+    }
+  }
+
   userIsNotLoggedIn() {
     return this.props.loggedInUser.id === -1;
   }
 
-  setLoginRedirect() {
-    if (this.userIsNotLoggedIn()) {
-      this.setState({ redirectFlags: { login: true } });
-    } else {
-      this.setState({ redirectFlags: { login: false } });
-    }
+  refetchLoggedInUser() {
+    let userPromise = API.getSpecificGrdian(this.props.loggedInUser.id);
+    userPromise.then(data => {
+      if (data !== undefined && this._isMounted) {
+        this.props.setLoggedInUser(data);
+      }
+    });
   }
 
   shouldRedirect() {
@@ -94,6 +106,18 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: "SET_ID",
         payload: userId
+      });
+    },
+    setLoggedInUser: user => {
+      dispatch({
+        type: "SET_USER",
+        payload: user
+      });
+    },
+    setActiveAlertId: activeAlertId => {
+      dispatch({
+        type: "SET_ALERT_ID",
+        payload: activeAlertId
       });
     }
   };
