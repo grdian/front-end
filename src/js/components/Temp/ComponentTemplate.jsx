@@ -14,23 +14,6 @@ class ComponentTemplate extends Component {
     };
   }
 
-  // RENDER =============================================================================================
-  // ====================================================================================================
-  render() {
-    if (this.shouldRedirect()) {
-      return <Redirect to={this.getRedirectPath()} />;
-    }
-
-    return (
-      <React.Fragment>
-        <h1>ComponentTemplate</h1>
-        <h2>Most Components Should Copy this Template.</h2>
-      </React.Fragment>
-    );
-  }
-
-  // ====================================================================================================
-
   componentDidMount() {
     this._isMounted = true;
     this.performLoginCheck();
@@ -38,6 +21,23 @@ class ComponentTemplate extends Component {
     // Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
     let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
   }
+
+  // RENDER =============================================================================================
+  // ====================================================================================================
+  render() {
+    if (this.shouldRedirect()) {
+      return <Redirect to={this.getRedirectPath()} />;
+    } else {
+      return (
+        <React.Fragment>
+          <h1>ComponentTemplate</h1>
+          <h2>Most Components Should Copy this Template.</h2>
+        </React.Fragment>
+      );
+    }
+  }
+
+  // ====================================================================================================
 
   // -----------------------------------------------------------------------------------------------------
   // Login and State Management Boilerplate Below --------------------------------------------------------
@@ -53,7 +53,7 @@ class ComponentTemplate extends Component {
       console.log("User not logged in. Redirecting to login.");
       this.setState({ redirectFlags: { login: true } });
     } else {
-      console.log("Updating logged-in user.");
+      console.log("Updating logged in user.");
       this.refetchLoggedInUser();
     }
   }
@@ -72,13 +72,15 @@ class ComponentTemplate extends Component {
   }
 
   shouldRedirect() {
+    let redirect = false;
     if (this.state.redirectFlags.login === true) {
-      return true;
+      redirect = true;
     }
     if (this.state.redirectFlags.main === true) {
-      return true;
+      redirect = true;
     }
-    return false;
+    console.log("shouldRedirect() is returning... " + redirect);
+    return redirect;
   }
 
   getRedirectPath() {
