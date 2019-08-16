@@ -10,11 +10,11 @@ import "./css/master.css";
 import MainView from "./js/components/Main/MainView";
 import LoginForm from "./js/components/Authentication/LoginForm";
 import SignUpForm from "./js/components/Authentication/SignUpForm";
-import AlertForm from "./js/components/Alert/AlertForm";
 import AllGrdiansView from "./js/components/Grdians/AllGrdiansView";
 import SingleGrdianView from "./js/components/Grdians/SingleGrdianView";
 import SingleAlertView from "./js/components/Alert/SingleAlertView";
-import PageLabel from "./js/components/Temp/PageLabel";
+import Menu from "./js/components/Layout/Menu";
+import AlertFormBrancher from "./js/components/Alert/AlertFormBrancher";
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router>
+          <Menu />
           <Layout>
             <Switch>
               <Route
@@ -55,18 +56,20 @@ class App extends Component {
               <Route
                 exact
                 path="/alertform"
-                render={props => <AlertForm {...props} />}
+                render={props => <AlertFormBrancher {...props} />}
+              />
+
+              <Route
+                exact
+                path="/alerts/:id"
+                render={props => <SingleAlertView {...props} />}
               />
               <Route
                 exact
                 path="/grdians/:id"
                 render={props => <SingleGrdianView {...props} />}
               />
-              <Route
-                exact
-                path="/alerts/:id"
-                render={props => <SingleAlertView {...props} />}
-              />
+
               <Route
                 exact
                 path="/grdians"

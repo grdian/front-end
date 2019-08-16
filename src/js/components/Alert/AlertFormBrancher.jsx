@@ -3,15 +3,17 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as API from "../../state/API";
 
-class SingleAlertView extends Component {
+import NewAlertForm from "./NewAlertForm";
+import ActiveAlertForm from "./ActiveAlertForm";
+
+class AlertFormBrancher extends Component {
 	_isMounted = false;
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			redirectFlags: { login: false, main: false },
-			redirectPaths: { login: "/login", main: "/main" },
-			singleAlert: API.nullAlert
+			redirectPaths: { login: "/login", main: "/main" }
 		};
 	}
 
@@ -19,12 +21,8 @@ class SingleAlertView extends Component {
 		this._isMounted = true;
 		this.performLoginCheck();
 
-		let alertPromise = API.getSpecificAlert(this.props.match.params.id);
-		alertPromise.then(data => {
-			if (this._isMounted) {
-				this.setState({ singleAlert: data });
-			}
-		});
+		// Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
+		let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
 	}
 
 	// RENDER =============================================================================================
@@ -33,15 +31,14 @@ class SingleAlertView extends Component {
 		if (this.shouldRedirect()) {
 			return <Redirect to={this.getRedirectPath()} />;
 		} else {
-			const singleAlert = this.state.singleAlert;
+			if (this.props.loggedInUser.activeAlertId === -1) {
+				return <NewAlertForm />;
+			} else {
+				return <ActiveAlertForm />;
+			}
 			return (
 				<React.Fragment>
-					<h1>
-						{singleAlert.senderFirstName + " " + singleAlert.senderLastName}
-					</h1>
-					<h3>{singleAlert.urgency}</h3>
-					<h3>&quot;{this.state.singleAlert.message}&quot;</h3>
-					<h4>{singleAlert.location}</h4>
+					<h1>Alert Form Brancher</h1>
 				</React.Fragment>
 			);
 		}
@@ -137,4 +134,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SingleAlertView);
+)(AlertFormBrancher);

@@ -3,15 +3,14 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as API from "../../state/API";
 
-class ActiveAlertForm extends Component {
+class ComponentTemplate extends Component {
   _isMounted = false;
 
   constructor(props) {
     super(props);
     this.state = {
       redirectFlags: { login: false, main: false },
-      redirectPaths: { login: "/login", main: "/main" },
-      activeAlert: API.nullAlert
+      redirectPaths: { login: "/login", main: "/main" }
     };
   }
 
@@ -19,24 +18,9 @@ class ActiveAlertForm extends Component {
     this._isMounted = true;
     this.performLoginCheck();
 
-    let alertPromise = API.getSpecificAlert(
-      this.props.loggedInUser.activeAlertId
-    );
-    alertPromise.then(data => {
-      if (this._isMounted) {
-        this.setState({ activeAlert: data });
-      }
-    });
+    // Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
+    let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
   }
-
-  resolveAlert = event => {
-    event.preventDefault();
-    let alertPromise = API.postResolveAlert(this.state.activeAlert.id);
-    alertPromise.then(() => {
-      this.setState({ redirectFlags: { main: true } });
-      this.refetchLoggedInUser();
-    });
-  };
 
   // RENDER =============================================================================================
   // ====================================================================================================
@@ -46,16 +30,8 @@ class ActiveAlertForm extends Component {
     } else {
       return (
         <React.Fragment>
-          <h2>Active Alert</h2>
-          <h3>
-            {this.props.loggedInUser.firstName +
-              " " +
-              this.props.loggedInUser.lastName}
-          </h3>
-          <h1>&quot;{this.state.activeAlert.message}&quot;</h1>
-          <button className="alert-button__main" onClick={this.resolveAlert}>
-            <h1>Mark Resolved</h1>
-          </button>
+          <h1>ComponentTemplate</h1>
+          <h2>Most Components Should Copy this Template.</h2>
         </React.Fragment>
       );
     }
@@ -103,6 +79,7 @@ class ActiveAlertForm extends Component {
     if (this.state.redirectFlags.main === true) {
       redirect = true;
     }
+    console.log("shouldRedirect() is returning... " + redirect);
     return redirect;
   }
 
@@ -151,4 +128,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ActiveAlertForm);
+)(ComponentTemplate);
