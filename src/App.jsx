@@ -26,8 +26,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Menu />
         <Router>
+          <Menu />
           <Layout>
             <Switch>
               <Route

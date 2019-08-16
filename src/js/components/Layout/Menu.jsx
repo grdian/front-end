@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const toggleMenu = () => {
   let hamburgerIcon = document.getElementById("burger");
@@ -17,15 +18,15 @@ const Menu = () => {
         </div>
       </div>
       <div id="menu-container" className="menu-container">
-        <a className="menu-link" href="#main">
-          Profile
-        </a>
-        <a className="menu-link" href="#grdians">
-          All Grdians
-        </a>
-        <a className="menu-link" href="#login">
-          Log Out
-        </a>
+        <Link to="/main">
+          <h3 className="menu-link">Profile</h3>
+        </Link>
+        <Link to="/grdians">
+          <h3 className="menu-link">All grdians</h3>
+        </Link>
+        <Link to="/login">
+          <h3 className="menu-link">Log Out</h3>
+        </Link>
       </div>
     </div>
   );
