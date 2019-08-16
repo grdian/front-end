@@ -24,9 +24,12 @@ const Menu = () => {
         <Link to="/grdians">
           <h3 className="menu-link">All grdians</h3>
         </Link>
-        <Link to="/login">
+        <a href="/login" className="menu-link">
+          Log Out
+        </a>
+        {/* <Link to="/login">
           <h3 className="menu-link">Log Out</h3>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
