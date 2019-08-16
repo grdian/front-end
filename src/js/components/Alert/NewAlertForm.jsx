@@ -11,13 +11,26 @@ class MyNewAlertForm extends Component {
     this.state = {
       redirectFlags: { login: false, main: false },
       redirectPaths: { login: "/login", main: "/main" },
-      newAlert: API.defaultNewAlertForm
+      newAlert: API.defaultNewAlertForm,
+      latitude: 0,
+      longitude: 0
     };
   }
 
   componentDidMount() {
     this._isMounted = true;
     this.performLoginCheck();
+    this.getLocation();
+  }
+
+  getLocation() {
+    const position = navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords.latitude);
+      // this.setState({ latitude: position.coords.latitude });
+      // this.setState({ longitud: position.coords.longitud });
+    });
+    console.log(this.state.latitude);
+    console.log(this.state.longitude);
   }
 
   sendNewAlert = event => {
