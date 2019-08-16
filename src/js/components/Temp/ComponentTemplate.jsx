@@ -3,15 +3,14 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as API from "../../state/API";
 
-class SingleGrdianView extends Component {
+class ComponentTemplate extends Component {
   _isMounted = false;
 
   constructor(props) {
     super(props);
     this.state = {
       redirectFlags: { login: false, main: false },
-      redirectPaths: { login: "/login", main: "/main" },
-      viewedGrdian: API.nullUser
+      redirectPaths: { login: "/login", main: "/main" }
     };
   }
 
@@ -19,12 +18,8 @@ class SingleGrdianView extends Component {
     this._isMounted = true;
     this.performLoginCheck();
 
-    let grdianPromise = API.getSpecificGrdian(this.props.match.params.id);
-    grdianPromise.then(data => {
-      if (this._isMounted) {
-        this.setState({ viewedGrdian: data });
-      }
-    });
+    // Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
+    let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
   }
 
   // RENDER =============================================================================================
@@ -33,78 +28,16 @@ class SingleGrdianView extends Component {
     if (this.shouldRedirect()) {
       return <Redirect to={this.getRedirectPath()} />;
     } else {
-      const viewedGrdian = this.state.viewedGrdian;
       return (
         <React.Fragment>
-          <section className="profile-panel">
-            <div className="profile-panel__image">
-              <img src={"/" + viewedGrdian.imgURL} alt="Profile pic" />
-            </div>
-            <div className="profile-panel__info">
-              <h3 className="profile-panel__info-element">
-                {viewedGrdian.firstName + " " + viewedGrdian.lastName}
-              </h3>
-            </div>
-            {this.getGrdianButton()}
-          </section>
+          <h1>ComponentTemplate</h1>
+          <h2>Most Components Should Copy this Template.</h2>
         </React.Fragment>
       );
     }
   }
 
   // ====================================================================================================
-
-  viewedGrdianIsFriend() {
-    let foundFriend = false;
-    const viewedGrdian = this.state.viewedGrdian;
-    console.log(viewedGrdian.id);
-    this.props.loggedInUser.grdians.forEach(singleGrdian => {
-      console.log(singleGrdian);
-      if (viewedGrdian.id === singleGrdian.id) {
-        console.log("found friend");
-        foundFriend = true;
-      }
-    });
-    return foundFriend;
-  }
-
-  getGrdianButton() {
-    if (this.viewedGrdianIsFriend()) {
-      return (
-        <button id="DeleteButton" type="button" onClick={this.unLinkGrdians}>
-          Delete Grdian
-        </button>
-      );
-    } else {
-      return (
-        <button id="AddButton" type="button" onClick={this.linkGrdians}>
-          Add Grdian
-        </button>
-      );
-    }
-  }
-
-  linkGrdians = event => {
-    event.preventDefault();
-    const viewedGrdianId = this.state.viewedGrdian.id;
-    const loggedInUserId = this.props.loggedInUser.id;
-    let dataPromise = API.postLinkGrdians(viewedGrdianId, loggedInUserId);
-    dataPromise.then(date => {
-      this.refetchLoggedInUser();
-    });
-    console.log("linked Gardians");
-  };
-
-  unLinkGrdians = event => {
-    event.preventDefault();
-    const viewedGrdianId = this.state.viewedGrdian.id;
-    const loggedInUserId = this.props.loggedInUser.id;
-    let dataPromise = API.postUnlinkGrdians(viewedGrdianId, loggedInUserId);
-    dataPromise.then(date => {
-      this.refetchLoggedInUser();
-    });
-    console.log("unLinked Gardians");
-  };
 
   // -----------------------------------------------------------------------------------------------------
   // Login and State Management Boilerplate Below --------------------------------------------------------
@@ -146,6 +79,7 @@ class SingleGrdianView extends Component {
     if (this.state.redirectFlags.main === true) {
       redirect = true;
     }
+    console.log("shouldRedirect() is returning... " + redirect);
     return redirect;
   }
 
@@ -194,4 +128,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SingleGrdianView);
+)(ComponentTemplate);
