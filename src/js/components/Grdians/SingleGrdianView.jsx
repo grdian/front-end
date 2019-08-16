@@ -91,6 +91,7 @@ class SingleGrdianView extends Component {
     let dataPromise = API.postLinkGrdians(viewedGrdianId, loggedInUserId);
     dataPromise.then(date => {
       this.refetchLoggedInUser();
+      this.setState({ redirectFlags: { main: true } });
     });
     console.log("linked Gardians");
   };
@@ -102,6 +103,7 @@ class SingleGrdianView extends Component {
     let dataPromise = API.postUnlinkGrdians(viewedGrdianId, loggedInUserId);
     dataPromise.then(date => {
       this.refetchLoggedInUser();
+      this.setState({ redirectFlags: { main: true } });
     });
     console.log("unLinked Gardians");
   };
