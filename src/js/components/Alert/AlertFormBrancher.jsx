@@ -3,15 +3,17 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as API from "../../state/API";
 
-class ActiveAlertForm extends Component {
+import NewAlertForm from "./NewAlertForm";
+import ActiveAlertForm from "./ActiveAlertForm";
+
+class AlertFormBrancher extends Component {
 	_isMounted = false;
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			redirectFlags: { login: false, main: false },
-			redirectPaths: { login: "/login", main: "/main" },
-			activeAlert: API.nullAlert
+			redirectPaths: { login: "/login", main: "/main" }
 		};
 	}
 
@@ -20,25 +22,8 @@ class ActiveAlertForm extends Component {
 		this.performLoginCheck();
 
 		// Make Async Fetch Calls Below. In "then" statement, check "_isMounted" before updating this.state.
-		//= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
-		let alertPromise = API.getSpecificAlert(
-			this.props.loggedInUser.activeAlertId
-		);
-		alertPromise.then(data => {
-			if (this._isMounted) {
-				this.setState({ activeAlert: data });
-			}
-		});
+		let dataPromise; //= fetchCall(); dataPromise.then((data)=>{ if(_isMounted){ setState({something: data}) } }) etc...
 	}
-
-	resolveAlert = event => {
-		event.preventDefault();
-		let alertPromise = API.postResolveAlert(this.state.activeAlert.id);
-		alertPromise.then(() => {
-			this.refetchLoggedInUser();
-		});
-		// console.log("resolve");
-	};
 
 	// RENDER =============================================================================================
 	// ====================================================================================================
@@ -46,18 +31,14 @@ class ActiveAlertForm extends Component {
 		if (this.shouldRedirect()) {
 			return <Redirect to={this.getRedirectPath()} />;
 		} else {
+			if (this.props.loggedInUser.activeAlertId === -1) {
+				return <NewAlertForm />;
+			} else {
+				return <ActiveAlertForm />;
+			}
 			return (
 				<React.Fragment>
-					<h2>Active Alert</h2>
-					<h3>
-						{this.props.loggedInUser.firstName +
-							" " +
-							this.props.loggedInUser.lastName}
-					</h3>
-					<h1>&quot;{this.state.activeAlert.message}&quot;</h1>
-					<button className="alert-button__main" onClick={this.resolveAlert}>
-						<h1>Mark Resolved</h1>
-					</button>
+					<h1>Alert Form Brancher</h1>
 				</React.Fragment>
 			);
 		}
@@ -153,4 +134,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(ActiveAlertForm);
+)(AlertFormBrancher);
