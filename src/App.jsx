@@ -13,8 +13,12 @@ import SignUpForm from "./js/components/Authentication/SignUpForm";
 import AllGrdiansView from "./js/components/Grdians/AllGrdiansView";
 import SingleGrdianView from "./js/components/Grdians/SingleGrdianView";
 import SingleAlertView from "./js/components/Alert/SingleAlertView";
+
+import Menu from "./js/components/Layout/Menu";
+
 import ComponentTemplate from "./js/components/Temp/ComponentTemplate";
 import AlertFormBrancher from "./js/components/Alert/AlertFormBrancher";
+
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +30,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <Router>
+          <Menu />
           <Layout>
             <Switch>
               <Route
@@ -63,12 +68,12 @@ class App extends Component {
                 path="/alerts/:id"
                 render={props => <SingleAlertView {...props} />}
               />
-
               <Route
                 exact
                 path="/grdians/:id"
                 render={props => <SingleGrdianView {...props} />}
               />
+
 
               <Route
                 exact
@@ -81,6 +86,7 @@ class App extends Component {
                 path="/template"
                 render={props => <ComponentTemplate {...props} />}
               />
+
             </Switch>
           </Layout>
         </Router>

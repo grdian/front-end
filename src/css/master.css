@@ -31,6 +31,10 @@
   overflow: hidden;
 }
 
+.header {
+  z-index: 1;
+}
+
 .header__logo {
   margin: 0 auto;
   max-width: 6rem;
@@ -178,7 +182,7 @@
 .convo {
   display: flex;
   flex-direction: column;
-  background-color: var(--neutral-light);
+  background-color: var(--white);
   border: 0.5px solid var(--neutral-dark);
   border-radius: 1em;
   margin: 0.1rem 0;
@@ -205,4 +209,79 @@
 .title {
   text-align: left;
   width: 100%;
+}
+
+/* Nav bar menu */
+
+.menu-container {
+  align-items: right;
+  background-color: var(--neutral-dark);
+  border-radius: 1rem;
+  display: none;
+  height: 11rem;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 2.4rem;
+  width: 15rem;
+  z-index: 3;
+}
+
+.menu-link {
+  color: var(--secondary-alt-1);
+  cursor: pointer;
+  display: block;
+  font-size: 2rem;
+  margin: 0.5rem auto;
+  opacity: 1;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.menu-link :hover {
+  color: var(--secondary);
+  transform: scale(1.1);
+}
+.menu-container :hover {
+  background-color: var(--primary);
+}
+.menu-container.opened {
+  display: block;
+}
+.burger {
+  background-color: var(--white);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  height: 30px;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  width: 30px;
+  z-index: 2;
+}
+.burger__lines {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+.burger__lines-single {
+  width: 15px;
+  height: 1px;
+  display: block;
+  background-color: var(--neutral-dark);
+  margin: 3px auto;
+  transition: all 0.3s ease-in-out;
+}
+.burger.is-active .burger__lines-single:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-active .burger__lines-single:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+.burger.is-active .burger__lines-single:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
 }
