@@ -4,7 +4,7 @@ export const nullUser = {
 	id: -1,
 	firstName: "grdian User",
 	lastName: "",
-	imgURL: "images/portraits/portrait_genericDefault.jpg",
+	imgURL: "/images/portraits/portrait_genericDefault.jpg",
 	phoneNumber: "",
 	emailAddress: "",
 	activeAlertId: -1,

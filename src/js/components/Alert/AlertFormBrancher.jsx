@@ -36,11 +36,6 @@ class AlertFormBrancher extends Component {
 			} else {
 				return <ActiveAlertForm />;
 			}
-			return (
-				<React.Fragment>
-					<h1>Alert Form Brancher</h1>
-				</React.Fragment>
-			);
 		}
 	}
 

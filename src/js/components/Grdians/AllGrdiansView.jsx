@@ -4,158 +4,167 @@ import { connect } from "react-redux";
 import * as API from "../../state/API";
 
 class AllGrdiansView extends Component {
-  _isMounted = false;
+	_isMounted = false;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirectFlags: { login: false, main: false },
-      redirectPaths: { login: "/login", main: "/main" },
-      allGrdians: API.nullGrdianList
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			redirectFlags: { login: false, main: false },
+			redirectPaths: { login: "/login", main: "/main" },
+			allGrdians: API.nullGrdianList
+		};
+	}
 
-  componentDidMount() {
-    this._isMounted = true;
-    this.performLoginCheck();
+	addDefaultSrc = ev => {
+		console.log("Error in AllGrdiansView: Invalid image, changing to default.");
+		ev.target.src = API.nullUser.imgURL;
+	};
 
-    let grdianListPromise = API.getAllGrdians();
-    grdianListPromise
-      .then(data => {
-        if (this._isMounted) {
-          this.setState({ allGrdians: data });
-        }
-      })
-      .then(this.state.allGrdians.map(grdian => {}));
-  }
+	componentDidMount() {
+		this._isMounted = true;
+		this.performLoginCheck();
 
-  // RENDER =============================================================================================
-  // ====================================================================================================
-  render() {
-    if (this.shouldRedirect()) {
-      return <Redirect to={this.getRedirectPath()} />;
-    } else {
-      const allGrdians = this.getGrdiansToRender();
-      return (
-        <React.Fragment>
-          <h1 className="main-title">All grdians</h1>
+		let grdianListPromise = API.getAllGrdians();
+		grdianListPromise
+			.then(data => {
+				if (this._isMounted) {
+					this.setState({ allGrdians: data });
+				}
+			})
+			.then(this.state.allGrdians.map(grdian => {}));
+	}
 
-          <section className="profile-grdians__all">
-            {allGrdians.map(grdian => (
-              <div key={grdian.id} className="profile-grdians__all-image">
-                <Link to={"/grdians/" + grdian.id}>
-                  <img src={"" + grdian.imgURL} alt="grdian pic" />
-                </Link>
-              </div>
-            ))}
-          </section>
-        </React.Fragment>
-      );
-    }
-  }
+	// RENDER =============================================================================================
+	// ====================================================================================================
+	render() {
+		if (this.shouldRedirect()) {
+			return <Redirect to={this.getRedirectPath()} />;
+		} else {
+			const allGrdians = this.getGrdiansToRender();
+			return (
+				<React.Fragment>
+					<h1 className="main-title">All grdians</h1>
 
-  getGrdiansToRender() {
-    const allGrdians = this.state.allGrdians;
-    let grdiansToReturn = [];
+					<section className="profile-grdians__all">
+						{allGrdians.map(grdian => (
+							<div key={grdian.id} className="profile-grdians__all-image">
+								<Link to={"/grdians/" + grdian.id}>
+									<img
+										onError={this.addDefaultSrc}
+										src={"" + grdian.imgURL}
+										alt="grdian pic"
+									/>
+								</Link>
+							</div>
+						))}
+					</section>
+				</React.Fragment>
+			);
+		}
+	}
 
-    for (let i = 0; i < allGrdians.length; i++) {
-      if (this.props.loggedInUser.id != allGrdians[i].id) {
-        grdiansToReturn.push(allGrdians[i]);
-      }
-    }
+	getGrdiansToRender() {
+		const allGrdians = this.state.allGrdians;
+		let grdiansToReturn = [];
 
-    return grdiansToReturn;
-  }
+		for (let i = 0; i < allGrdians.length; i++) {
+			if (this.props.loggedInUser.id != allGrdians[i].id) {
+				grdiansToReturn.push(allGrdians[i]);
+			}
+		}
 
-  // ====================================================================================================
+		return grdiansToReturn;
+	}
 
-  // -----------------------------------------------------------------------------------------------------
-  // Login and State Management Boilerplate Below --------------------------------------------------------
-  // -----------------------------------------------------------------------------------------------------
+	// ====================================================================================================
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
+	// -----------------------------------------------------------------------------------------------------
+	// Login and State Management Boilerplate Below --------------------------------------------------------
+	// -----------------------------------------------------------------------------------------------------
 
-  performLoginCheck() {
-    //The state of the logged-in user should be updated on every page.
-    if (this.userIsNotLoggedIn()) {
-      console.log("User not logged in. Redirecting to login.");
-      this.setState({ redirectFlags: { login: true } });
-    } else {
-      console.log("Updating logged in user.");
-      this.refetchLoggedInUser();
-    }
-  }
+	componentWillUnmount() {
+		this._isMounted = false;
+	}
 
-  userIsNotLoggedIn() {
-    return this.props.loggedInUser.id === -1;
-  }
+	performLoginCheck() {
+		//The state of the logged-in user should be updated on every page.
+		if (this.userIsNotLoggedIn()) {
+			console.log("User not logged in. Redirecting to login.");
+			this.setState({ redirectFlags: { login: true } });
+		} else {
+			console.log("Updating logged in user.");
+			this.refetchLoggedInUser();
+		}
+	}
 
-  refetchLoggedInUser() {
-    let userPromise = API.getSpecificGrdian(this.props.loggedInUser.id);
-    userPromise.then(data => {
-      if (data !== undefined && this._isMounted) {
-        this.props.setLoggedInUser(data);
-      }
-    });
-  }
+	userIsNotLoggedIn() {
+		return this.props.loggedInUser.id === -1;
+	}
 
-  shouldRedirect() {
-    let redirect = false;
-    if (this.state.redirectFlags.login === true) {
-      redirect = true;
-    }
-    if (this.state.redirectFlags.main === true) {
-      redirect = true;
-    }
-    console.log("shouldRedirect() is returning... " + redirect);
-    return redirect;
-  }
+	refetchLoggedInUser() {
+		let userPromise = API.getSpecificGrdian(this.props.loggedInUser.id);
+		userPromise.then(data => {
+			if (data !== undefined && this._isMounted) {
+				this.props.setLoggedInUser(data);
+			}
+		});
+	}
 
-  getRedirectPath() {
-    if (this.state.redirectFlags.login === true) {
-      return this.state.redirectPaths.login;
-    }
-    if (this.state.redirectFlags.main === true) {
-      return this.state.redirectPaths.main;
-    }
-    return false;
-  }
+	shouldRedirect() {
+		let redirect = false;
+		if (this.state.redirectFlags.login === true) {
+			redirect = true;
+		}
+		if (this.state.redirectFlags.main === true) {
+			redirect = true;
+		}
+		console.log("shouldRedirect() is returning... " + redirect);
+		return redirect;
+	}
+
+	getRedirectPath() {
+		if (this.state.redirectFlags.login === true) {
+			return this.state.redirectPaths.login;
+		}
+		if (this.state.redirectFlags.main === true) {
+			return this.state.redirectPaths.main;
+		}
+		return false;
+	}
 }
 
 // REDUX BOILERPLATE BELOW ---------------------------
 
 const mapStateToProps = state => {
-  return {
-    loggedInUser: state.loggedInUser
-  };
+	return {
+		loggedInUser: state.loggedInUser
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    setLoggedInUserId: userId => {
-      dispatch({
-        type: "SET_ID",
-        payload: userId
-      });
-    },
-    setLoggedInUser: user => {
-      dispatch({
-        type: "SET_USER",
-        payload: user
-      });
-    },
-    setActiveAlertId: activeAlertId => {
-      dispatch({
-        type: "SET_ALERT_ID",
-        payload: activeAlertId
-      });
-    }
-  };
+	return {
+		setLoggedInUserId: userId => {
+			dispatch({
+				type: "SET_ID",
+				payload: userId
+			});
+		},
+		setLoggedInUser: user => {
+			dispatch({
+				type: "SET_USER",
+				payload: user
+			});
+		},
+		setActiveAlertId: activeAlertId => {
+			dispatch({
+				type: "SET_ALERT_ID",
+				payload: activeAlertId
+			});
+		}
+	};
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(AllGrdiansView);
