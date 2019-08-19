@@ -1,51 +1,28 @@
 import React, { Component } from "react";
-import { geolocated } from "react-geolocated";
+import * as Geolocator from "../../state/Geolocator";
 
 class Geolocation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { map: {}, infoWindow: {} };
-  }
+	constructor(props) {
+		super(props);
+		this.state = { coordinates: [2.3, 0.5] };
+	}
 
-  render() {
-    return !this.props.isGeolocationAvailable ? (
-      <div>Your browser does not support Geolocation</div>
-    ) : !this.props.isGeolocationEnabled ? (
-      <div>Geolocation is not enabled</div>
-    ) : this.props.coords ? (
-      <table>
-        <tbody>
-          <tr>
-            <td>latitude</td>
-            <td>{this.props.coords.latitude}</td>
-          </tr>
-          <tr>
-            <td>longitude</td>
-            <td>{this.props.coords.longitude}</td>
-          </tr>
-          <tr>
-            <td>altitude</td>
-            <td>{this.props.coords.altitude}</td>
-          </tr>
-          <tr>
-            <td>heading</td>
-            <td>{this.props.coords.heading}</td>
-          </tr>
-          <tr>
-            <td>speed</td>
-            <td>{this.props.coords.speed}</td>
-          </tr>
-        </tbody>
-      </table>
-    ) : (
-      <div>Getting the location data&hellip; </div>
-    );
-  }
+	componentDidMount() {
+		let coordinatePromise = Geolocator.getCurrentCoordinates();
+		coordinatePromise.then(coords => {
+			this.setState({ coordinates: coords });
+		});
+	}
+
+	render() {
+		return (
+			<React.Fragment>
+				<h1>Geolocation</h1>
+				<h3>Latitude: {this.state.coordinates[0]}</h3>
+				<h3>Longitude: {this.state.coordinates[1]}</h3>
+			</React.Fragment>
+		);
+	}
 }
 
-export default geolocated({
-  positionOptions: {
-    enableHighAccuracy: false
-  },
-  userDecisionTimeout: 5000
-})(Geolocation);
+export default Geolocation;

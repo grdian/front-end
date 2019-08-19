@@ -37,6 +37,7 @@ class LoginForm extends Component {
 
 		return (
 			<React.Fragment>
+				<h2 />
 				<h1 className="main-title">grdian</h1>
 				<form className="input-panel" onSubmit={this.tryUserLogin}>
 					<h3 className="field-label">Email:</h3>
