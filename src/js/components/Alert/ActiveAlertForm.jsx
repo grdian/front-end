@@ -46,14 +46,16 @@ class ActiveAlertForm extends Component {
     } else {
       return (
         <React.Fragment>
-          <h2>Active Alert</h2>
+          <h2>Active Alert For:</h2>
           <h3>
             {this.props.loggedInUser.firstName +
               " " +
               this.props.loggedInUser.lastName}
           </h3>
-          <h1>&quot;{this.state.activeAlert.message}&quot;</h1>
-          <button className="alert-button__main" onClick={this.resolveAlert}>
+          <h1 className="convo__active">
+            &quot;{this.state.activeAlert.message}&quot;
+          </h1>
+          <button className="alert-button__resolve" onClick={this.resolveAlert}>
             <h1>Mark Resolved</h1>
           </button>
         </React.Fragment>

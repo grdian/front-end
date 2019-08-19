@@ -88,6 +88,7 @@
 .profile-panel__image img {
   border-radius: 100%;
   width: 8rem;
+  height: 8rem;
 }
 .profile-panel__info {
   display: flex;
@@ -104,8 +105,8 @@
   background: linear-gradient(
     135deg,
     var(--alert),
-    var(--alert),
-    var(--alert-dark)
+    var(--alert-dark),
+    var(--alert-dark-2)
   );
   background-color: var(--alert);
   border: 2px solid var(--neutral-dark);
@@ -154,8 +155,8 @@
   background: linear-gradient(
     135deg,
     var(--alert),
-    var(--alert),
-    var(--alert-dark)
+    var(--alert-dark),
+    var(--alert-dark-2)
   );
   background-color: var(--alert);
   border: 2px solid var(--neutral-dark);
@@ -204,11 +205,78 @@
 }
 .profile-grdians__image img {
   border-radius: 100%;
-  min-width: 6rem;
+  width: 6rem;
+  height: 6rem;
 }
 .title {
   text-align: left;
   width: 100%;
+}
+
+/* All grdians */
+
+.profile-grdians__all {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.profile-grdians__all-image img {
+  border-radius: 100%;
+  min-width: 6rem;
+  height: 7rem;
+}
+
+/* Single grdian */
+
+.profile-panel__single {
+  align-items: center;
+  display: grid;
+  grid-template-rows: 2;
+  margin-top: 3rem;
+}
+
+.profile-panel__single-image img {
+  border-radius: 100%;
+  min-width: 18rem;
+  height: 18rem;
+}
+
+.profile-panel__single-info {
+  align-content: center;
+}
+
+.profile-panel__single-info-element {
+  font-size: 2.5rem;
+}
+
+/* Active Alert */
+
+.alert-button__resolve {
+  background: linear-gradient(
+    135deg,
+    var(--primary-light),
+    var(--primary),
+    var(--primary-dark)
+  );
+  border: 2px solid var(--neutral-dark);
+  border-radius: 2rem;
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.convo__active {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  border: 0.5px solid var(--neutral-dark);
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  margin: 2.5rem 0 0.5rem;
+  padding: 0.5rem;
+  width: 21rem;
 }
 
 /* Nav bar menu */

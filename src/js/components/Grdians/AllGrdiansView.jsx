@@ -38,19 +38,13 @@ class AllGrdiansView extends Component {
       const allGrdians = this.getGrdiansToRender();
       return (
         <React.Fragment>
-          <h1>All Grdians</h1>
-          <h3>
-            User:
-            {this.props.loggedInUser.firstName +
-              " " +
-              this.props.loggedInUser.lastName}
-          </h3>
+          <h1 className="main-title">All grdians</h1>
 
-          <section className="profile-grdians">
+          <section className="profile-grdians__all">
             {allGrdians.map(grdian => (
-              <div key={grdian.id} className="profile-grdians__image">
+              <div key={grdian.id} className="profile-grdians__all-image">
                 <Link to={"/grdians/" + grdian.id}>
-                  <img src={"/" + grdian.imgURL} alt="grdian pic" />
+                  <img src={"" + grdian.imgURL} alt="grdian pic" />
                 </Link>
               </div>
             ))}

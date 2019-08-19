@@ -94,7 +94,7 @@ class MainView extends Component {
                     key={"/grdians/" + grdian.id}
                     to={"/grdians/" + grdian.id}
                   >
-                    <img src={"/" + grdian.imgURL} alt="grdian pic" />
+                    <img src={"" + grdian.imgURL} alt="grdian pic" />
                   </Link>
                 </div>
               ))}
