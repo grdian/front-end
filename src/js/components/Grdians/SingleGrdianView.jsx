@@ -36,12 +36,12 @@ class SingleGrdianView extends Component {
       const viewedGrdian = this.state.viewedGrdian;
       return (
         <React.Fragment>
-          <section className="profile-panel">
-            <div className="profile-panel__image">
-              <img src={"/" + viewedGrdian.imgURL} alt="Profile pic" />
+          <section className="profile-panel__single">
+            <div className="profile-panel__single-image">
+              <img src={"" + viewedGrdian.imgURL} alt="Profile pic" />
             </div>
-            <div className="profile-panel__info">
-              <h3 className="profile-panel__info-element">
+            <div className="profile-panel__single-info">
+              <h3 className="profile-panel__single-info-element">
                 {viewedGrdian.firstName + " " + viewedGrdian.lastName}
               </h3>
             </div>
@@ -71,13 +71,23 @@ class SingleGrdianView extends Component {
   getGrdianButton() {
     if (this.viewedGrdianIsFriend()) {
       return (
-        <button id="DeleteButton" type="button" onClick={this.unLinkGrdians}>
+        <button
+          id="DeleteButton"
+          className="join-button"
+          type="button"
+          onClick={this.unLinkGrdians}
+        >
           Delete Grdian
         </button>
       );
     } else {
       return (
-        <button id="AddButton" type="button" onClick={this.linkGrdians}>
+        <button
+          id="AddButton"
+          className="join-button"
+          type="button"
+          onClick={this.linkGrdians}
+        >
           Add Grdian
         </button>
       );
