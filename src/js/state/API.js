@@ -48,7 +48,7 @@ export const defaultNewAlertForm = {
 };
 
 // API Fetching Paths
-export const BASE_API_PATH = "http://localhost:8080/api/";
+export const BASE_API_PATH = "http://192.168.2.80:8080/api/";
 export const REQUEST_ALL_GRDIANS = "allgrdians";
 export const REQUEST_GRDIANS_OF_USER = "grdians";
 export const REQUEST_ALL_ALERTS = "allalerts";
