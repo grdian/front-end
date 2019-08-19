@@ -2,9 +2,9 @@
 
 export const nullUser = {
 	id: -1,
-	firstName: "None",
+	firstName: "grdian User",
 	lastName: "",
-	imgURL: "",
+	imgURL: "/images/portraits/portrait_genericDefault.jpg",
 	phoneNumber: "",
 	emailAddress: "",
 	activeAlertId: -1,
@@ -18,6 +18,8 @@ export const nullAlert = {
 	senderId: -1,
 	timeStamp: "",
 	message: "blank message",
+	latitude: 0,
+	longitude: 0,
 	senderFirstName: "Nobody",
 	senderLastName: "",
 	resolved: false
@@ -43,8 +45,7 @@ export const URGENCY_LEVELS = ["EMERGENCY", "HIGH", "Moderate", "Minor"];
 
 export const defaultNewAlertForm = {
 	message: "I need help ASAP!",
-	urgency: URGENCY_LEVELS[0],
-	location: "(00.000000,00.000000)"
+	urgency: URGENCY_LEVELS[0]
 };
 
 // API Fetching Paths
@@ -58,14 +59,23 @@ export const REQUEST_RESOLVE_ALERT = "allalerts/resolve";
 export const REQUEST_LINK_GRDIANS = "allgrdians/link";
 export const REQUEST_UNLINK_GRDIANS = "allgrdians/unlink";
 
-export async function postCreateNewAlert(senderId, message, urgency, location) {
+export async function postCreateNewAlert(
+	senderId,
+	message,
+	urgency,
+	location,
+	latitude,
+	longitude
+) {
 	let api = BASE_API_PATH;
 	let request = REQUEST_ALL_ALERTS;
 	let postBody = {
 		senderId: senderId,
 		message: message,
 		urgency: urgency,
-		location: location
+		location: location,
+		latitude: latitude,
+		longitude: longitude
 	};
 	let dataPromise = postRequestToAPI(api, request, postBody);
 	return dataPromise;
