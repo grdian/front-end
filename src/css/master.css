@@ -247,6 +247,7 @@
   min-width: 6rem;
 }
 .title {
+  font-weight: bold;
   text-align: left;
   width: 100%;
 }
