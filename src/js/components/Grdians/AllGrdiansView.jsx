@@ -53,6 +53,11 @@ class AllGrdiansView extends Component {
                     onError={this.addDefaultSrc}
                     src={"" + grdian.imgURL}
                     alt="grdian pic"
+                    className={
+                      this.grdianIsFriend(grdian)
+                        ? "friend__portrait"
+                        : "non-friend__portrait"
+                    }
                   />
                   <h4 className="portrait-caption">
                     {grdian.firstName + " " + grdian.lastName}
@@ -65,6 +70,18 @@ class AllGrdiansView extends Component {
       );
     }
   }
+
+  grdianIsFriend = grdian => {
+    // return this.props.loggedInUser.grdians.includes({ id: grdian.id });
+    let isFriend = false;
+    const friendGrdians = this.props.loggedInUser.grdians;
+    for (let i = 0; i < friendGrdians.length; i++) {
+      if (friendGrdians[i].id === grdian.id) {
+        isFriend = true;
+      }
+    }
+    return isFriend;
+  };
 
   getGrdiansToRender() {
     const allGrdians = this.state.allGrdians;

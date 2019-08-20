@@ -259,6 +259,14 @@
 
 /* All grdians */
 
+.friend__portrait {
+  border: 0.3rem solid var(--primary);
+}
+
+.non-friend__portrait {
+  border: 0.3rem solid var(--alert);
+}
+
 .portrait-caption {
   font-size: 0.9em;
   text-align: center;
