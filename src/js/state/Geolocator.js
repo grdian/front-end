@@ -1,8 +1,6 @@
 import API_KEY from "../../config/key";
 export const GOOGLE_MAPS_API_KEY = API_KEY.apiKey;
 
-console.log(GOOGLE_MAPS_API_KEY);
-
 const GEOLOCATION_OPTIONS = {
   enableHighAccuracy: true,
   timeout: 5000,

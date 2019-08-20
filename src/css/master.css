@@ -169,7 +169,8 @@
 }
 .moderate {
   font-weight: bold;
-  color: var(--secondary);
+  color: var(--secondary-alt-2);
+  text-shadow: 0.05em 0.05em var(--neutral-dark-light);
 }
 .minor {
   font-weight: bold;
@@ -221,7 +222,7 @@
     var(--secondary-light-1)
   );
   margin: 2rem 0;
-  width: 20rem;
+  width: 22rem;
 }
 .convo {
   display: flex;

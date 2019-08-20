@@ -113,7 +113,7 @@ class MainView extends Component {
                   <h4 className={this.getUrgencyClassName(alert)}>
                     {alert.urgency}
                   </h4>
-                  <p>{alert.message}</p>
+                  <p>&quot;{alert.message}&quot;</p>
                 </div>
               </Link>
             ))}
