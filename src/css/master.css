@@ -160,15 +160,19 @@
   margin-top: 2rem;
 }
 .emergency {
+  font-weight: bold;
   color: var(--alert);
 }
 .high {
+  font-weight: bold;
   color: var(--alert);
 }
 .moderate {
+  font-weight: bold;
   color: var(--secondary);
 }
 .minor {
+  font-weight: bold;
   color: var(--primary);
 }
 
@@ -254,9 +258,15 @@
 
 /* All grdians */
 
+.portrait-caption {
+  font-size: 0.9em;
+  text-align: center;
+}
+
 .profile-grdians__all {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.3rem;
 }
 
 .profile-grdians__all-image img {
@@ -288,6 +298,10 @@
 }
 
 /* Active Alert */
+
+.sender__name {
+  margin-bottom: 1rem;
+}
 
 .alert-button__resolve {
   background: linear-gradient(

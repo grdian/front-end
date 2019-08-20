@@ -17,6 +17,28 @@ class MainView extends Component {
     };
   }
 
+  getUrgencyClassName = singleAlert => {
+    const alertUrgencyLevel = singleAlert.urgency;
+    const defaultLevels = API.URGENCY_LEVELS;
+
+    let className = "emergency";
+
+    if (alertUrgencyLevel === defaultLevels[0]) {
+      // EMERGENCY
+      className = "emergency";
+    } else if (alertUrgencyLevel === defaultLevels[1]) {
+      // HIGH
+      className = "high";
+    } else if (alertUrgencyLevel === defaultLevels[2]) {
+      // Moderate
+      className = "moderate";
+    } else {
+      // Minor
+      className = "minor";
+    }
+    return className;
+  };
+
   addDefaultSrc = ev => {
     console.log("Error in MainView: Invalid image, changing to default.");
     ev.target.src = API.nullUser.imgURL;
@@ -88,6 +110,9 @@ class MainView extends Component {
               <Link key={"/alerts/" + alert.id} to={"/alerts/" + alert.id}>
                 <div key={alert.id} className="convo">
                   <h4>{alert.senderFirstName + " " + alert.senderLastName}</h4>
+                  <h4 className={this.getUrgencyClassName(alert)}>
+                    {alert.urgency}
+                  </h4>
                   <p>{alert.message}</p>
                 </div>
               </Link>

@@ -17,6 +17,7 @@ export const nullAlert = {
   id: -1,
   senderId: -1,
   timeStamp: "",
+  urgency: "",
   message: "blank message",
   latitude: 0,
   longitude: 0,
